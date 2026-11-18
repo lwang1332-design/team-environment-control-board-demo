@@ -127,6 +127,9 @@ try {
  envelope={schema:2,revision:0,token:uid('rev'),data:initialData(),undo:[],backups:[],savedAt:''};
  startupWarning=`读取原数据失败，已保留原存储。可在管理页导出当前工作内容并检查原 JSON。${error.message}`;
 }
+const rosterNeedsUpdate=envelope.data.people.some(p=>/^成员[A-N]$/.test(p.name));
+envelope.data=upgradeRoster(envelope.data);
+if(rosterNeedsUpdate&&!PUBLIC_EDITION)startupWarning='成员名单已按原编号对应更新，请核对原任务的负责人。'+startupWarning;
 let data=envelope.data;
 let prefs={view:'overview',search:'',board:'all',status:'all',quick:'all',sort:'order',taskTab:'all',collapsed:[],actor:'A',role:'supervisor',lastBoard:'IPD',lastOwner:'A',lastHours:4};
 try {prefs={...prefs,...JSON.parse(localStorage.getItem(PREFS) || '{}')};} catch {}
