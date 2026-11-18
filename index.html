@@ -496,9 +496,27 @@ function showConflict(next,label,latest) {
  const retainedDialog={kind:ui.dialog,title:$('#dialogTitle').textContent,body:$('#dialogBody').innerHTML,foot:$('#dialogFoot').innerHTML};
  // Capture input values rather than replacing a task draft silently.
  ui.conflict={next:clone(next),label,latest,retainedDialog};
- const tasks=next.tasks.filter(t=>JSON.stringify(t)!==JSON.stringify(latest.data.tasks.find(other=>other.id===t.id)));
+ const rows=[];
+ const taskFields={name:'任务名称',owner:'主责编号',board:'业务',due:'交期',status:'状态',deliverable:'验收交付物',resultLink:'成果',docLink:'任务依据',important:'重要',urgent:'紧急',key:'重点任务'};
+ for(const task of next.tasks) {
+  const recent=latest.data.tasks.find(t=>t.id===task.id);
+  if(!recent){rows.push([task.name,'新增任务','最新版本中无此任务',task.name]);continue;}
+  for(const [field,label] of Object.entries(taskFields)) {
+   if(String(task[field])!==String(recent[field]))rows.push([task.name,label,recent[field],task[field]]);
+  }
+  const allocations=t=>t.allocations.map(a=>`${person(a.person).name} ${a.hours} h`).join('；');
+  if(allocations(task)!==allocations(recent))rows.push([task.name,'人员投入',allocations(recent),allocations(task)]);
+  const milestones=t=>t.milestones.map(m=>`${m.name} ${m.done?'已完成':'未完成'}`).join('；');
+  if(milestones(task)!==milestones(recent))rows.push([task.name,'节点',milestones(recent),milestones(task)]);
+  const feedback=t=>t.history.at(-1)?.text || '';
+  if(feedback(task)!==feedback(recent))rows.push([task.name,'最近反馈',feedback(recent),feedback(task)]);
+ }
+ for(const task of latest.data.tasks){if(!next.tasks.some(t=>t.id===task.id))rows.push([task.name,'任务范围','最新版本中存在','本次草稿未包含']);}
+ for(const [key,label] of [['people','人员设置'],['notices','公告'],['requests','需求池'],['settings','文档设置']]) {
+  if(JSON.stringify(next[key])!==JSON.stringify(latest.data[key]))rows.push([label,'内容',JSON.stringify(latest.data[key]),JSON.stringify(next[key])]);
+ }
  $('#dialogTitle').textContent='检测到另一标签页的修改';
- $('#dialogBody').innerHTML=`<p class="note warning">当前填写已保留，两个版本尚未合并。可以先导出本次草稿，再读取最新数据。</p><table class="diff"><thead><tr><th>任务</th><th>最新版本</th><th>本次草稿</th></tr></thead><tbody>${tasks.slice(0,20).map(t=>{const latestTask=latest.data.tasks.find(a=>a.id===t.id);return `<tr><td>${escapeHTML(t.name)}</td><td>${escapeHTML(latestTask?.status || '无此任务')} / ${escapeHTML(latestTask?.due || '')} / ${escapeHTML(latestTask?.resultLink || '')}</td><td>${t.status} / ${t.due} / ${escapeHTML(t.resultLink)}</td></tr>`;}).join('')}</tbody></table>${tasks.length?'':'<p class="muted-block">差异涉及人员、公告或其他设置，请导出草稿核对。</p>'}`;
+ $('#dialogBody').innerHTML=`<p class="note warning">当前填写已保留，两个版本尚未合并。可以先导出本次草稿，再读取最新数据。</p><table class="diff"><thead><tr><th>任务 / 字段</th><th>最新版本</th><th>本次草稿</th></tr></thead><tbody>${rows.slice(0,30).map(([name,field,recent,draft])=>`<tr><td>${escapeHTML(name)}<br><small>${field}</small></td><td>${escapeHTML(recent ?? '')}</td><td>${escapeHTML(draft ?? '')}</td></tr>`).join('')}</tbody></table>${rows.length>30?'<p class="muted-block">显示前 30 项差异，其余内容可导出草稿核对。</p>':''}`;
  $('#dialogFoot').innerHTML='<button data-act="conflict-export">导出本次草稿</button><button class="primary" data-act="conflict-latest">读取最新版本</button>';
  ui.dialog='conflict';if(!$('#dialog').open)$('#dialog').showModal();document.body.style.overflow='hidden';setSaveState('检测到并发修改，待核对',true);
 }
