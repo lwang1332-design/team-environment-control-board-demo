@@ -31,7 +31,7 @@
 <script>
 'use strict';
 // The public build substitutes only the roster and product name. No credentials are embedded.
-const ROSTER = Array.from({length:14},(_,i)=>'成员'+String.fromCharCode(65+i));
+const ROSTER = ['王立恒','刘军卫','尹冉','王素景','周小文','菅锦锦','郭丽丽','王晶','任云丰','杨恒旭','包容磊','李鑫','李国华','丁雪琳'];
 const PUBLIC_EDITION = true;
 const STORAGE = 'ec_team_board_v15';
 const PREFS = 'ec_team_board_v15_prefs';
@@ -57,7 +57,7 @@ function weekRange() { const d = new Date(); d.setDate(d.getDate()-(d.getDay()+6
 const dateOK = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(new Date(`${value}T12:00:00`).getTime()) && localDate(new Date(`${value}T12:00:00`)) === value;
 const formatNumber = value => Number(value || 0).toLocaleString('zh-CN',{maximumFractionDigits:1});
 const timestamp = () => new Date().toISOString();
-const shortDate = value => value ? String(value).slice(5).replace('-','/') : '待定';
+const shortDate = value => value ? String(value).slice(5,10).replace('-','/') : '待定';
 function initialData() {
  return {people:ROSTER.map((name,i)=>({id:String.fromCharCode(65+i),name,role:'待设置',capacity:32,feishuOpenId:''})),tasks:[],notices:[],requests:[],settings:{teamDocUrl:'',baseUrl:'',apiBase:''}};
 }
@@ -133,7 +133,7 @@ try {prefs={...prefs,...JSON.parse(localStorage.getItem(PREFS) || '{}')};} catch
 if (!data.people.some(p=>p.id===prefs.actor)) prefs.actor=data.people[0].id;
 if (!(prefs.view in VIEW_NAMES)) prefs.view='overview';
 if (prefs.view==='admin' && prefs.role!=='supervisor') prefs.view='overview';
-const ui={selected:new Set(),dialog:null,scroll:{},dirty:false,editToken:null,importData:null,pending:null,conflict:null,saveError:'',storageChanged:false,toastTimer:null};
+const ui={pageDirty:false,selected:new Set(),dialog:null,scroll:{},dirty:false,editToken:null,importData:null,pending:null,conflict:null,saveError:'',storageChanged:false,toastTimer:null};
 const person = id => data.people.find(p=>p.id===id) || {id,name:'未设置',capacity:0};
 const isManager = () => prefs.role==='supervisor';
 const canEdit = task => isManager() || task.owner===prefs.actor;
@@ -161,11 +161,23 @@ function showToast(message,undo=false) {
 function setSaveState(message,error=false) {$('#saveState').textContent=message;$('#saveState').classList.toggle('error',error);}
 function snapshot(label,source=data) {return {id:uid('backup'),label,at:timestamp(),actor:prefs.actor,role:prefs.role,data:clone(source)};}
 function readLatest() {const raw=localStorage.getItem(STORAGE);return raw?parseSaved(raw):null;}
-function publishLocal(next,label,baseToken=envelope.token,undoStack=null) {
+async function publishLocal(next,label,baseToken=envelope.token,undoStack=null) {
+ const author={actor:prefs.actor,role:prefs.role};
+ const write=()=>publishUnlocked(next,label,baseToken,undoStack,author);
+ try {
+  if(typeof navigator!=='undefined'&&navigator.locks)return await navigator.locks.request(STORAGE,write);
+  return write();
+ } catch(error) {
+  ui.pending={next:clone(next),label,baseToken,undoStack};ui.saveError=error.message;
+  setSaveState('保存失败 · 内容保留待重试',true);renderBanner();return false;
+ }
+}
+function publishUnlocked(next,label,baseToken=envelope.token,undoStack=null,author={actor:prefs.actor,role:prefs.role}) {
  try {
   const latest=readLatest();
   if (latest && latest.token!==baseToken) {showConflict(next,label,latest);return false;}
-  const history=undoStack || [...envelope.undo,snapshot(label)].slice(-15);
+  const entry={...snapshot(label),...author};
+  const history=undoStack || [...envelope.undo,entry].slice(-15);
   const result={schema:2,revision:(latest?.revision || envelope.revision)+1,token:uid('rev'),savedAt:timestamp(),data:normalizeData(next),undo:history,backups:[...envelope.backups,snapshot(`操作前 · ${label}`)].slice(-12)};
   setSaveState('保存中…');
   localStorage.setItem(STORAGE,JSON.stringify(result));
@@ -179,7 +191,7 @@ function publishLocal(next,label,baseToken=envelope.token,undoStack=null) {
   return false;
  }
 }
-function commit(label,mutate) {
+async function commit(label,mutate) {
  const next=clone(data);
  try {mutate(next);}catch(error){showToast(error.message);return false;}
  return publishLocal(next,label,ui.dialog?ui.editToken:envelope.token);
@@ -190,7 +202,7 @@ function renderBanner() {
  else if(startupWarning) $('#banner').innerHTML=`<p class="note warning">${escapeHTML(startupWarning)}</p>`;
  else $('#banner').innerHTML='';
 }
-function undo() {
+async function undo() {
  const entry=envelope.undo.at(-1);if(!entry)return showToast('暂无可撤销的操作');
  const changed=normalizeData(entry.data);
  if (!isManager()) {
@@ -199,7 +211,7 @@ function undo() {
   const restored=changed.tasks.filter(t=>t.owner!==prefs.actor);
   if(JSON.stringify(original)!==JSON.stringify(restored)||JSON.stringify(changed.people)!==JSON.stringify(data.people)||JSON.stringify(changed.notices)!==JSON.stringify(data.notices))return showToast('该操作需主管撤销');
  }
- if(publishLocal(changed,`撤销 ${entry.label}`,envelope.token,envelope.undo.slice(0,-1)))showToast('已撤销，操作前数据已自动备份');
+ if(await publishLocal(changed,`撤销 ${entry.label}`,envelope.token,envelope.undo.slice(0,-1)))showToast('已撤销，操作前数据已自动备份');
 }
 function filteredTasks() {
  const [start,end]=weekRange();
@@ -289,6 +301,7 @@ function render() {
  if(searchActive && $('#search')){$('#search').focus();$('#search').setSelectionRange(caret,caret);}
 }
 function navigate(view) {
+ if(ui.pageDirty)return showToast('请先保存管理页的文档链接');
  if(view==='admin'&&!isManager())return;
  ui.scroll[prefs.view]=window.scrollY;prefs.view=view;
  render();window.scrollTo({top:ui.scroll[view] || 0,behavior:'instant'});
@@ -326,7 +339,7 @@ function refreshLoadPreview() {
  const id=formValue('owner'),hours=Number(formValue('hours'));
  $('#loadPreview').textContent=`${person(id).name} 原计划 ${formatNumber(hoursFor(id))} h，交办后 ${formatNumber(hoursFor(id)+hours)} / ${person(id).capacity} h${hoursFor(id)+hours>person(id).capacity?' · 超出可分配工时，请核对安排':''}`;
 }
-function saveNewTask() {
+async function saveNewTask() {
  if(!isManager()||!formValid())return;
  const fields=new FormData($('#editForm'));
  const owner=String(fields.get('owner')),hours=Number(fields.get('hours')),doc=String(fields.get('docLink')).trim();
@@ -340,7 +353,7 @@ function saveNewTask() {
  const task={id:uid('TASK'),name:String(fields.get('name')).trim(),board:String(fields.get('board')),owner,due:String(fields.get('due')),important:fields.get('important')==='重要',urgent:fields.get('urgent')==='紧急',key:fields.get('key')==='on',allocations,deliverable:String(fields.get('deliverable')).trim(),docLink:doc,resultLink:'',status:'未开始',milestones:(lines.length?lines:['需求确认','执行交付','成果验收']).map(name=>({name,done:false})),history:[],updatedAt:timestamp()};
  if(!task.name||!task.deliverable)return formError('请填写任务名称和验收交付物');
  log(task,'主管交办任务');
- if(commit('任务已交办',draft=>{draft.tasks.unshift(task);if(ui.newRequest){const r=draft.requests.find(r=>r.id===ui.newRequest);if(r){r.status='已分派';r.taskId=task.id;}}})) {
+ if(await commit('任务已交办',draft=>{draft.tasks.unshift(task);if(ui.newRequest){const r=draft.requests.find(r=>r.id===ui.newRequest);if(r){r.status='已分派';r.taskId=task.id;}}})) {
   prefs.lastOwner=owner;prefs.lastBoard=task.board;prefs.lastHours=hours;prefs.taskTab='未开始';closeDialog(true);navigate('tasks');
  }
 }
@@ -368,7 +381,9 @@ function transferOwner(task,newOwner,hours) {
  task.allocations=task.allocations.filter(a=>a.person!==previous&&a.person!==newOwner);
  task.allocations.unshift({person:newOwner,role:'主责',hours:Number(hours)});task.owner=newOwner;
 }
-function saveTask(nextStatus) {
+async function saveTask(nextStatus) {
+ if(ui.milestoneWrite)await ui.milestoneWrite;
+ if(ui.dialog!=='task')return;
  const original=data.tasks.find(t=>t.id===ui.taskID);if(!original||!canEdit(original)||!formValid())return;
  if(!isManager()&&nextStatus==='已完成')return formError('任务关闭由主管验收');
  if(!isManager()&&['待验收','已完成'].includes(original.status)&&nextStatus==='进行中')return formError('退回和重新开启由主管操作');
@@ -403,7 +418,20 @@ function saveTask(nextStatus) {
  if(result!==original.resultLink)log(updated,`成果已更新 ${result || '（空）'}`);
  if(note)log(updated,note);
  if(JSON.stringify(updated.milestones)!==JSON.stringify(original.milestones))log(updated,`节点进度 ${progress(updated)}%`);
- if(commit('任务已更新',draft=>{draft.tasks=draft.tasks.map(t=>t.id===updated.id?updated:t);}))closeDialog(true);
+ if(await commit('任务已更新',draft=>{draft.tasks=draft.tasks.map(t=>t.id===updated.id?updated:t);}))closeDialog(true);
+}
+async function saveMilestones() {
+ const task=data.tasks.find(t=>t.id===ui.taskID);
+ if(!task||!canEdit(task)||!isActive(task))return;
+ const checks=[...document.querySelectorAll('[data-milestone]')].map(input=>input.checked);
+ const previousToken=ui.editToken;
+ if(await commit('节点进度已保存',draft=>{
+  const changed=draft.tasks.find(t=>t.id===task.id);
+  changed.milestones.forEach((m,i)=>{m.done=Boolean(checks[i]);});
+  log(changed,`节点进度 ${progress(changed)}%`);
+ })) {
+  if(ui.dialog==='task'&&ui.taskID===task.id&&ui.editToken===previousToken){ui.editToken=envelope.token;$('#dialogSubtitle').textContent=`${task.id} · ${person(task.owner).name} · 节点已保存 ${progress(data.tasks.find(t=>t.id===task.id))}%`;}
+ }
 }
 function noticeForm(id='') {
  if(!isManager())return;
@@ -411,21 +439,21 @@ function noticeForm(id='') {
  ui.noticeID=id;
  showDialog('notice',id?'编辑公告':'发布公告',`<form id="editForm"><label class="field">公告标题 *<input name="title" required autofocus maxlength="120" value="${escapeHTML(notice?.title || '')}"></label><label class="field">公告正文 *<textarea name="content" required rows="6" maxlength="3000">${escapeHTML(notice?.content || '')}</textarea></label><div class="form-grid"><label class="field">有效期，可留空<input name="expiry" type="date" value="${notice?.expiry || ''}"></label><label class="field">发布人<input name="author" value="${escapeHTML(notice?.author || person(prefs.actor).name)}" maxlength="60"></label></div><label class="field"><span><input type="checkbox" name="pinned" ${notice?.pinned?'checked':''}> 首页置顶</span></label></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-notice">保存公告</button>');
 }
-function saveNotice() {
+async function saveNotice() {
  if(!isManager()||!formValid())return;
  const fields=new FormData($('#editForm')),title=String(fields.get('title')).trim(),content=String(fields.get('content')).trim();
  if(!title||!content)return formError('标题与正文不能为空');
  const notice={id:ui.noticeID || uid('N'),title,content,author:String(fields.get('author')).trim(),expiry:String(fields.get('expiry')),pinned:fields.get('pinned')==='on',archived:false,createdAt:data.notices.find(n=>n.id===ui.noticeID)?.createdAt || timestamp()};
- if(commit('公告已保存',draft=>{draft.notices=draft.notices.filter(n=>n.id!==notice.id);draft.notices.unshift(notice);}))closeDialog(true);
+ if(await commit('公告已保存',draft=>{draft.notices=draft.notices.filter(n=>n.id!==notice.id);draft.notices.unshift(notice);}))closeDialog(true);
 }
 function requestForm() {
  showDialog('request','提交需求',`<form id="editForm"><label class="field">需求名称 *<input name="name" autofocus required maxlength="120"></label><div class="form-grid"><label class="field">业务板块<select name="board">${options(BOARDS,prefs.lastBoard)}</select></label><label class="field">期望交期，可留空<input name="due" type="date"></label></div><label class="field">背景与要求<textarea name="note" rows="4" maxlength="1500"></textarea></label></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-request">加入需求池</button>','主管分派后计入任务与负荷');
 }
-function saveRequest() {
+async function saveRequest() {
  if(!formValid())return;
  const fields=new FormData($('#editForm')),name=String(fields.get('name')).trim();if(!name)return formError('请填写需求名称');
  const request={id:uid('REQ'),name,board:String(fields.get('board')),due:String(fields.get('due')),note:String(fields.get('note')).trim(),source:person(prefs.actor).name,status:'待分派',createdAt:timestamp()};
- if(commit('需求已提交',draft=>draft.requests.unshift(request))){closeDialog(true);navigate('tasks');}
+ if(await commit('需求已提交',draft=>draft.requests.unshift(request))){closeDialog(true);navigate('tasks');}
 }
 function batchForm() {
  if(!isManager()||!ui.selected.size)return;
@@ -440,10 +468,10 @@ function previewBatch() {
  $('#batchPreview').innerHTML=`<table class="diff"><thead><tr><th>任务</th><th>变更前</th><th>变更后</th></tr></thead><tbody>${tasks.map(t=>`<tr><td>${escapeHTML(t.name)}</td><td>${escapeHTML(person(t.owner).name)} / ${t.due} / ${t.board}</td><td>${escapeHTML(person(owner || t.owner).name)} / ${due || t.due} / ${board || t.board}</td></tr>`).join('')}</tbody></table><p class="note">转派后保留原主责工时，新主责原协同记录归并为主责，请检查调整后的人员负荷。</p>`;
  $('#dialogFoot').innerHTML='<button data-act="close">取消</button><button class="primary" data-act="apply-batch">确认批量保存</button>';
 }
-function applyBatch() {
+async function applyBatch() {
  if(!isManager()||!ui.batchChanges)return;
  const changes=ui.batchChanges;
- if(commit('批量调整已保存',draft=>{draft.tasks.filter(t=>changes.ids.includes(t.id)).forEach(t=>{const notes=[];if(changes.owner&&changes.owner!==t.owner){notes.push(`主责 ${person(t.owner).name} → ${person(changes.owner).name}`);transferOwner(t,changes.owner,t.allocations.find(a=>a.person===t.owner)?.hours || 0);}if(changes.due){notes.push(`交期 ${t.due} → ${changes.due}`);t.due=changes.due;}if(changes.board){notes.push(`业务 ${t.board} → ${changes.board}`);t.board=changes.board;}log(t,`批量调整 ${notes.join('；')}`);});})){ui.selected.clear();closeDialog(true);render();}
+ if(await commit('批量调整已保存',draft=>{draft.tasks.filter(t=>changes.ids.includes(t.id)).forEach(t=>{const notes=[];if(changes.owner&&changes.owner!==t.owner){notes.push(`主责 ${person(t.owner).name} → ${person(changes.owner).name}`);transferOwner(t,changes.owner,t.allocations.find(a=>a.person===t.owner)?.hours || 0);}if(changes.due){notes.push(`交期 ${t.due} → ${changes.due}`);t.due=changes.due;}if(changes.board){notes.push(`业务 ${t.board} → ${changes.board}`);t.board=changes.board;}log(t,`批量调整 ${notes.join('；')}`);});})){ui.selected.clear();closeDialog(true);render();}
 }
 function download(name,content,type) {const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function exportJSON() {download(`环控看板_完整备份_${today()}.json`,JSON.stringify({schema:2,data,revision:envelope.revision,token:envelope.token,exportedAt:timestamp()},null,2),'application/json;charset=utf-8');}
@@ -469,7 +497,7 @@ function showConflict(next,label,latest) {
  $('#dialogFoot').innerHTML='<button data-act="conflict-export">导出本次草稿</button><button class="primary" data-act="conflict-latest">读取最新版本</button>';
  ui.dialog='conflict';if(!$('#dialog').open)$('#dialog').showModal();document.body.style.overflow='hidden';setSaveState('检测到并发修改，待核对',true);
 }
-function applyInline(input) {
+async function applyInline(input) {
  if(!isManager())return;
  const next=clone(data);let label='';
  try {
@@ -478,12 +506,12 @@ function applyInline(input) {
   if(input.dataset.priority){const t=next.tasks.find(t=>t.id===input.dataset.priority);const q=input.value;if(!QUADRANTS[q])throw Error('优先级无效');t.important=['Q1','Q2'].includes(q);t.urgent=['Q1','Q3'].includes(q);log(t,`优先级调整为 ${q} ${QUADRANTS[q]}`);label='优先级已更新';}
   if(input.dataset.capacity){const p=next.people.find(p=>p.id===input.dataset.capacity);const value=Number(input.value);if(!input.value||!Number.isFinite(value)||value<0||value>168)throw Error('周可分配工时需在 0–168 小时之间');p.capacity=value;label='可分配工时已更新';}
   if(input.dataset.roleEdit){const p=next.people.find(p=>p.id===input.dataset.roleEdit);p.role=input.value.trim() || '待设置';label='业务分工已更新';}
-  if(label)publishLocal(next,label);
+  if(label)await publishLocal(next,label);
  }catch(error){showToast(error.message);render();}
 }
 function printMeeting() {if(prefs.view!=='meeting')navigate('meeting');window.print();}
 async function readImport(file) {if(!isManager()||!file)return;try{const value=JSON.parse(await file.text());previewImport(value,'导入备份预览');}catch(error){showToast(`无法读取备份：${error.message}`);}$('#importFile').value='';}
-function handleAction(action,button) {
+async function handleAction(action,button) {
  switch(action) {
   case 'new':taskForm();break;
   case 'close':if(ui.dialog==='conflict')return showToast('请先导出草稿或读取最新版本');closeDialog();break;
@@ -494,7 +522,7 @@ function handleAction(action,button) {
   case 'save-notice':saveNotice();break;
   case 'request':requestForm();break;
   case 'save-request':saveRequest();break;
-  case 'undo':if(ui.dialog)return showToast('请先保存或关闭当前详情');undo();break;
+  case 'undo':if(ui.dialog)return showToast('请先保存或关闭当前详情');await undo();break;
   case 'clear-filter':Object.assign(prefs,{search:'',board:'all',status:'all',quick:'all'});render();break;
   case 'expand':prefs.collapsed=[];render();break;
   case 'collapse':prefs.collapsed=data.people.map(p=>p.id);render();break;
@@ -506,16 +534,16 @@ function handleAction(action,button) {
   case 'export-json':if(isManager())exportJSON();break;
   case 'export-csv':exportCSV();break;
   case 'import':if(isManager())$('#importFile').click();break;
-  case 'apply-import':if(isManager()&&ui.importData&&publishLocal(ui.importData,'备份已恢复',ui.editToken)){if(!data.people.some(p=>p.id===prefs.actor))prefs.actor=data.people[0].id;ui.selected.clear();closeDialog(true);render();}break;
+  case 'apply-import':if(isManager()&&ui.importData&&await publishLocal(ui.importData,'备份已恢复',ui.editToken)){if(!data.people.some(p=>p.id===prefs.actor))prefs.actor=data.people[0].id;ui.selected.clear();closeDialog(true);render();}break;
   case 'reset-view':Object.assign(prefs,{search:'',board:'all',status:'all',quick:'all',sort:'order',collapsed:[],taskTab:'all'});ui.scroll={};render();showToast('已恢复默认视图');break;
   case 'print':printMeeting();break;
   case 'save-links':{
    if(!isManager())break;
    const team=$('#knowledgeLink').value.trim(),table=$('#tableLink').value.trim();
    if(!validLink(team)||!validLink(table))return showToast('请使用有效的 HTTPS 链接');
-   commit('文档链接已保存',draft=>{draft.settings.teamDocUrl=team;draft.settings.baseUrl=table;});break;
+   if(await commit('文档链接已保存',draft=>{draft.settings.teamDocUrl=team;draft.settings.baseUrl=table;}))ui.pageDirty=false;break;
   }
-  case 'retry':{const p=ui.pending;if(p&&publishLocal(p.next,p.label,p.baseToken,p.undoStack)){if(ui.dialog&&ui.dialog!=='conflict')closeDialog(true);}break;}
+  case 'retry':{const p=ui.pending;if(p&&await publishLocal(p.next,p.label,p.baseToken,p.undoStack)){if(ui.dialog&&ui.dialog!=='conflict')closeDialog(true);}break;}
   case 'reload-data':if(ui.dialog)return showToast('请先保存当前草稿，系统会自动核对版本');try{const latest=readLatest();if(latest){envelope=latest;data=latest.data;ui.storageChanged=false;render();showToast('已读取最新数据');}}catch(error){showToast(error.message);}break;
   case 'conflict-export':download(`环控看板_未合并草稿_${today()}.json`,JSON.stringify({schema:2,data:ui.conflict.next},null,2),'application/json;charset=utf-8');break;
   case 'conflict-latest':try{const latest=readLatest();if(latest){envelope=latest;data=latest.data;}ui.storageChanged=false;ui.pending=null;ui.saveError='';ui.conflict=null;closeDialog(true);render();setSaveState('已读取最新版本');showToast('已读取最新数据，可重新应用草稿中的修改');}catch(error){showToast(error.message);}break;
@@ -540,10 +568,12 @@ document.addEventListener('click',event=>{
 });
 document.addEventListener('input',event=>{
  if(event.target.id==='search'){prefs.search=event.target.value;render();}
- if(event.target.closest('#editForm')){ui.dirty=true;if(ui.dialog==='new')refreshLoadPreview();if(ui.dialog==='batch'){$('#batchPreview').innerHTML='';$('#dialogFoot').innerHTML='<button data-act="close">取消</button><button class="primary" data-act="preview-batch">预览变更</button>';}}
+ if(['knowledgeLink','tableLink'].includes(event.target.id))ui.pageDirty=true;
+ if(event.target.closest('#editForm')){if(event.target.dataset.milestone===undefined)ui.dirty=true;if(ui.dialog==='new')refreshLoadPreview();if(ui.dialog==='batch'){$('#batchPreview').innerHTML='';$('#dialogFoot').innerHTML='<button data-act="close">取消</button><button class="primary" data-act="preview-batch">预览变更</button>';}}
 });
-document.addEventListener('change',event=>{
+document.addEventListener('change',async event=>{
  const input=event.target;
+ if(input.dataset.milestone!==undefined){if(ui.milestoneWrite)await ui.milestoneWrite;ui.milestoneWrite=saveMilestones();await ui.milestoneWrite;ui.milestoneWrite=null;return;}
  if(input.id==='role'){prefs.role=input.value;if(prefs.role!=='supervisor'&&prefs.view==='admin')prefs.view='overview';ui.selected.clear();render();return;}
  if(input.id==='actor'){prefs.actor=input.value;render();return;}
  const filterKeys={boardFilter:'board',statusFilter:'status',sortFilter:'sort'};
@@ -566,9 +596,9 @@ document.addEventListener('keydown',event=>{
 });
 window.addEventListener('storage',event=>{
  if(event.key!==STORAGE||!event.newValue)return;
- try {const latest=parseSaved(event.newValue);if(latest.token===envelope.token)return;ui.storageChanged=true;if(!ui.dialog&&!ui.pending){envelope=latest;data=latest.data;ui.storageChanged=false;render();showToast('已同步另一标签页的修改');}else renderBanner();}catch(error){ui.saveError=`另一标签页数据无效：${error.message}`;renderBanner();}
+ try {const latest=parseSaved(event.newValue);if(latest.token===envelope.token)return;ui.storageChanged=true;if(!ui.dialog&&!ui.pending&&!ui.pageDirty){envelope=latest;data=latest.data;ui.storageChanged=false;render();showToast('已同步另一标签页的修改');}else renderBanner();}catch(error){ui.saveError=`另一标签页数据无效：${error.message}`;renderBanner();}
 });
-window.addEventListener('beforeunload',event=>{if(ui.dirty||ui.pending){event.preventDefault();event.returnValue='';}});
+window.addEventListener('beforeunload',event=>{if(ui.dirty||ui.pending||ui.pageDirty){event.preventDefault();event.returnValue='';}});
 render();
 if(envelope.savedAt)setSaveState(`本浏览器已保存 · ${new Date(envelope.savedAt).toLocaleTimeString('zh-CN',{hour12:false})}`);
 </script>
