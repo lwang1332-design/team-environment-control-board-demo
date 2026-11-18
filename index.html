@@ -145,7 +145,7 @@ async function publishLocal(next,label,baseToken=envelope.token,undoStack=null) 
   if(isManager()){rpc('ec_board_backups').then(backups=>{envelope.backups=backups;if(prefs.view==='admin'&&!ui.dialog)render();}).catch(()=>{});}
   return true;
  } catch(error) {
-  if(error.code==='40001'){try{showConflict(next,label,await readLatest());}catch(inner){showToast(inner.message);}return false;}
+  if(['40001','PT409'].includes(error.code)){try{showConflict(next,label,await readLatest());}catch(inner){showToast(inner.message);}return false;}
   ui.pending={next:clone(next),label,baseToken,undoStack};ui.saveError=error.message;
   setSaveState('保存失败 · 修改保留待重试',true);renderBanner();
   const feedback=$('#formFeedback');if(feedback)feedback.textContent=error.message;
