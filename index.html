@@ -390,7 +390,7 @@ async function saveTask(nextStatus) {
  const original=data.tasks.find(t=>t.id===ui.taskID);if(!original||!canEdit(original)||!formValid())return;
  if(!isManager()&&nextStatus==='已完成')return formError('任务关闭由主管验收');
  if(!isManager()&&['待验收','已完成'].includes(original.status)&&nextStatus==='进行中')return formError('退回和重新开启由主管操作');
- const result=String(formValue('resultLink') || '').trim(),note=String(formValue('note') || '').trim();
+ const result=original.status==='已完成'?original.resultLink:String(formValue('resultLink') || '').trim(),note=String(formValue('note') || '').trim();
  const status=nextStatus || original.status;
  if(status==='待验收'&&!result)return formError('提交验收前请填写成果链接或编号');
  if(status==='阻塞'&&!note)return formError('请填写阻塞原因及所需支持');
