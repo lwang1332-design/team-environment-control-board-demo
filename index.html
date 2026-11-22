@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>环控团队工作看板 V1.7</title>
+<title>环控团队工作看板 V1.8</title>
 <style>
 :root{--navy:#122b49;--blue:#215fbd;--ink:#20334b;--muted:#697c92;--line:#dfe7f0;--bg:#f4f7fb;--red:#b63143;--orange:#9a5f10;--green:#13735e}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Inter,"Microsoft YaHei","PingFang SC",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}a{color:var(--blue)}button,input,select,textarea{outline-offset:3px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8db8ff}button{border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:8px 12px}button:hover{background:#edf4ff}.primary{background:var(--blue);border-color:var(--blue);color:#fff}.primary:hover{background:#184a96}.danger{color:var(--red)}.plain{background:none;border:0;padding:3px;color:var(--blue)}.small{font-size:12px;padding:5px 9px}.muted,small{color:var(--muted)}.sidebar{background:var(--navy);color:#fff;width:232px;position:fixed;inset:0 auto 0 0;padding:28px 16px;display:flex;flex-direction:column;gap:9px}.brand{margin:0 10px 24px}.brand strong{font-size:18px;display:block}.brand small{color:#b8cae3;display:block;margin-top:7px}.nav{border:0;color:#dbe8fa;background:none;text-align:left;padding:13px 15px;font-weight:600}.nav.active{background:#2b568c;color:#fff}.identity{margin-top:auto;border-top:1px solid #44617f;padding-top:18px}.identity label{font-size:12px;display:block;color:#c5d6eb;margin-bottom:7px}.identity select{width:100%;margin-bottom:9px}.identity small{font-size:11px;color:#c5d6eb;line-height:1.6}.main{margin-left:232px}.topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:5;min-height:67px;padding:14px 26px;display:flex;gap:12px;align-items:center;justify-content:space-between}.top-actions,.toolbar,.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.save-state{font-size:12px;color:var(--green)}.save-state.error{color:var(--red)}.content{max-width:1550px;padding:24px 26px 64px;margin:auto}.pagehead{display:flex;justify-content:space-between;gap:18px;margin-bottom:20px;align-items:center}.pagehead h1{font-size:26px;margin:0 0 7px}.pagehead p{color:var(--muted);margin:0;font-size:13px}.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:20px}.kpi,.panel,.person,.quadrant{background:#fff;border:1px solid var(--line);border-radius:12px}.kpi{padding:16px}.kpi span{color:var(--muted);font-size:12px}.kpi strong{display:block;font-size:27px;margin:10px 0 4px}.kpi small{font-size:11px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:22px 0 12px}h2{font-size:17px;margin:0}h3{font-size:15px;margin:0 0 10px}.panel{padding:18px}.panel+.panel{margin-top:14px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.filters input{flex:1;min-width:190px}.filters select{max-width:190px}.quick{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}.quick .active,.tabs .active{background:#e7f0ff;color:#1955a5;border-color:#95b7e8}.count{font-size:12px;color:var(--muted)}input,select,textarea{border:1px solid #cdd9e6;border-radius:7px;padding:9px 10px;min-width:0;background:#fff;color:var(--ink)}textarea{resize:vertical;line-height:1.6}input[type=checkbox]{accent-color:var(--blue);width:17px;height:17px;padding:0;vertical-align:middle}input[type=date]{min-width:120px}.people-grid{display:grid;gap:12px}.person{overflow:hidden}.person-head{display:flex;align-items:center;gap:13px;padding:15px 17px}.person-toggle{background:none;border:0;text-align:left;display:flex;align-items:center;gap:11px;min-width:185px;padding:0}.avatar{background:#e9f1fc;color:#245b9b;width:37px;height:37px;border-radius:10px;display:grid;place-items:center;font-weight:700}.person-name{font-weight:700;display:block;font-size:15px}.person-role{display:block;font-size:11px;color:var(--muted);margin-top:4px}.load{margin-left:auto;min-width:190px;max-width:290px;width:27%}.load-line{font-size:12px;display:flex;justify-content:space-between;gap:10px}.bar{background:#e8eef6;border-radius:10px;height:6px;margin-top:7px;overflow:hidden}.bar i{display:block;height:100%;background:#4f84ce}.bar.over i{background:#d26854}.pill{display:inline-block;white-space:nowrap;font-size:11px;border-radius:5px;padding:4px 7px;background:#eef2f6;color:#596c84}.pill.red{background:#fff0f2;color:var(--red)}.pill.orange{background:#fff3e4;color:var(--orange)}.pill.blue{background:#eaf2ff;color:#205aab}.pill.green{background:#e8f6f1;color:var(--green)}.task-row{display:grid;grid-template-columns:28px minmax(210px,2.4fr) minmax(90px,.85fr) minmax(100px,1fr) minmax(100px,.9fr) 88px;gap:10px;align-items:center;padding:12px 17px;border-top:1px solid var(--line);font-size:12px}.task-title{text-align:left;display:block;background:none;border:0;padding:0;font-weight:650;color:#245a9c;font-size:13px;line-height:1.5}.task-title:hover{text-decoration:underline;background:none}.task-sub{color:var(--muted);font-size:11px;margin-top:5px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.task-row select,.task-row input{max-width:100%;font-size:12px;padding:6px;min-height:32px}.date-input input{width:100%}.hours{display:flex;gap:5px;align-items:center}.hours input{width:64px}.businesses{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.businesses .panel{padding:13px}.businesses strong{display:block;font-size:22px;margin:8px 0}.notice{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid var(--line)}.notice:last-child{border-bottom:0}.notice p{white-space:pre-wrap;line-height:1.7;font-size:13px}.notice summary{cursor:pointer;font-weight:650;line-height:1.6}.notice small{display:block;margin-top:7px}.notice .actions{align-self:start}.quadrants{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quadrant{overflow:hidden}.quad-head{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;border-top:3px solid #adb8c6}.quadrant.Q1 .quad-head{border-top-color:#d15f63;background:#fff6f6}.quadrant.Q2 .quad-head{border-top-color:#4e84c9;background:#f3f7ff}.quadrant.Q3 .quad-head{border-top-color:#d3a15b;background:#fff9f0}.quad-card{display:block;width:100%;padding:13px 16px;border:0;border-bottom:1px solid var(--line);border-radius:0;text-align:left}.quad-card strong{font-size:13px}.quad-card .meta{display:flex;justify-content:space-between;gap:10px;margin-top:9px;font-size:12px;align-items:center}.empty{text-align:center;padding:28px 12px;color:var(--muted);font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap}.assignment{display:grid;grid-template-columns:26px minmax(170px,1.5fr) minmax(170px,1.4fr) minmax(130px,1fr) 90px 110px;gap:14px;align-items:start;padding:16px;border-bottom:1px solid var(--line);font-size:12px;overflow-wrap:anywhere}.assignment:last-child{border-bottom:0}.assignment small{display:block;margin-bottom:6px}.batch-bar{position:sticky;top:67px;z-index:4;display:flex;justify-content:space-between;gap:10px;background:#e7f0ff;border:1px solid #a9c4ea;border-radius:9px;padding:10px 13px;margin-bottom:14px;align-items:center;flex-wrap:wrap}.request{padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;justify-content:space-between}.request p{font-size:12px;color:var(--muted);margin:7px 0}.request:last-child{border-bottom:0}.meeting{overflow:auto}.meeting table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}.meeting th,.meeting td{padding:12px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.meeting th{font-size:12px;color:var(--muted)}.meeting h2{margin-bottom:10px}.note{font-size:12px;line-height:1.7;background:#eef4fc;padding:11px 13px;border-radius:8px;color:#4f6989}.warning{background:#fff4e3;color:#8a5715}.muted-block{color:var(--muted);font-size:12px;line-height:1.8}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.admin-grid .panel{margin:0}.member-editor{display:grid;grid-template-columns:100px minmax(100px,1fr) 74px;gap:9px;align-items:center;margin-bottom:10px;font-size:12px}.member-editor input{width:100%}.backup-list{max-height:270px;overflow:auto}.backup-row{padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;justify-content:space-between;font-size:12px}.dialog{position:fixed;inset:0;border:0;padding:0;width:100%;height:100%;max-width:none;max-height:none;background:#142d4b66;z-index:20;margin:0}.dialog[open]{display:flex;justify-content:flex-end}.drawer{width:min(690px,100%);height:100%;background:#fff;display:flex;flex-direction:column;box-shadow:-12px 0 45px #122b4930}.drawer-head{padding:21px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.drawer-head h2{font-size:21px;margin-bottom:6px;line-height:1.4}.drawer-head p{margin:0;font-size:12px;color:var(--muted)}.drawer-body{flex:1;overflow:auto;padding:20px 24px}.drawer-foot{padding:14px 24px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff}.drawer-foot .primary{margin-left:auto}.field{display:grid;gap:7px;font-size:12px;font-weight:600;margin-bottom:15px}.field input,.field textarea,.field select{width:100%;font-weight:400}.field small{font-weight:400}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.full{grid-column:1/-1}details.advanced{border:1px solid var(--line);padding:12px;border-radius:8px;margin:12px 0}details.advanced>summary{cursor:pointer;color:#365c91;font-weight:600;font-size:13px}details.advanced[open]>summary{margin-bottom:15px}.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.milestone{display:flex;align-items:center;gap:9px;padding:10px;background:#f5f8fc;border-radius:7px;margin-bottom:8px;font-size:13px}.milestone input{flex:0 0 auto}.task-brief{border:1px solid var(--line);border-radius:8px;padding:13px;margin-bottom:16px}.task-brief p{white-space:pre-wrap;line-height:1.7;margin:7px 0 0;font-size:13px}.activity{border-left:2px solid #d4e2f4;padding:0 0 13px 12px;margin-left:5px;font-size:12px;line-height:1.6}.activity time{color:var(--muted);font-size:11px}.activity p{margin:3px 0}.error-text{color:var(--red);font-size:12px;line-height:1.6;white-space:pre-wrap}.toast{position:fixed;bottom:23px;right:25px;background:#183553;color:#fff;z-index:40;padding:13px 17px;border-radius:9px;display:flex;gap:20px;align-items:center;box-shadow:0 5px 25px #132d4933;max-width:calc(100% - 28px);font-size:13px}.toast button{background:transparent;color:#fff;border-color:#809dbd;padding:3px 10px}.hidden{display:none!important}.diff{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}.diff th,.diff td{text-align:left;border:1px solid var(--line);padding:8px;word-break:break-word}.link-line{display:flex;gap:9px;flex-wrap:wrap;font-size:12px}.progress-note{font-size:12px;color:var(--muted);margin:7px 0}.retry-banner{margin-bottom:15px;padding:12px;border-radius:9px;background:#fff1f2;color:var(--red);display:flex;justify-content:space-between;gap:12px;align-items:center}.mini-title{margin:17px 0 9px}.feedback{min-height:18px}.pagehead .toolbar{justify-content:flex-end}.meeting-active .person-role{display:none}
@@ -19,17 +19,38 @@ body{font-size:13px}.sidebar{width:184px;padding:20px 12px}.brand{margin:0 6px 2
 @media(max-width:850px){.sidebar{position:static;width:100%;padding:10px 12px;grid-template-columns:repeat(4,minmax(0,1fr))}.brand{grid-column:1/-1;margin:0 0 4px;display:flex}.brand strong{font-size:15px}.identity{display:flex;margin:2px 0 0;padding:6px 0 0;grid-column:1/-1}.identity button{margin-left:auto}.main{margin-left:0;height:auto;min-height:70dvh}.topbar{padding:8px 12px;gap:7px;flex-wrap:wrap}.content{height:auto;min-height:65dvh;padding:12px}.workspace{min-height:260px;max-height:55dvh}.pagehead h1{font-size:20px}.pagehead p{display:none}.metrics{gap:10px;padding:8px 10px}.metrics b{font-size:15px}.account-row{display:flex;flex-wrap:wrap}.account-row>div{width:100%}.support-grid{grid-template-columns:repeat(2,1fr)}.auth-card{padding:22px}.admin-scroll{max-height:70dvh}.notice-panel{max-height:180px}.quadrants{max-height:70dvh}.top-actions{gap:5px}.topbar button{font-size:11px}.content>#page{gap:8px}}
 @media print{.workspace{overflow:visible;min-height:0}.table-scroll{overflow:visible}.pagination,.metrics,.quick,.archive-panel,.notice-panel{display:none}.main,.content,.content>#page{height:auto;overflow:visible;display:block}.compact-table{min-width:0}}
 
+
+.overview-scroll,.combined-scroll,.meeting-scroll{min-height:0;overflow:auto;padding:0 2px 12px}
+.important-notices{height:25dvh;min-height:120px;display:flex;flex-direction:column;gap:5px;background:#fff}
+.board-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.board-heading h3{margin:0}.board-heading h3 small{font-weight:400}
+.notice-list{overflow:auto;min-height:0}.notice-line{display:grid;grid-template-columns:minmax(120px,24%) minmax(0,1fr) auto;align-items:start;gap:14px;padding:9px 0;border-top:1px solid var(--line)}
+.notice-copy,.meeting-copy,.meeting-topic p{white-space:pre-wrap;overflow-wrap:anywhere}.notice-line strong{overflow-wrap:anywhere}
+.overview-summary{margin:12px 0}.overview-summary h2{margin-bottom:6px}
+.member-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:10px}
+.member-card{padding:10px;min-height:85px}.member-card .muted-block{margin:4px 0}.member-group{margin-bottom:10px}
+.member-task{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:5px;text-align:left;padding:5px 0;border:0;border-top:1px solid var(--line);border-radius:0}
+.member-task span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.member-task small{font-size:10px}.member-task .pill{font-size:10px;padding:2px 4px}
+.combined-scroll>h2{margin:10px 0}.combined-scroll>.quadrants{max-height:430px;overflow:auto}
+.combined-scroll>.workspace{margin:8px 0;max-height:50dvh}
+.meeting-month{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.meeting-topic{display:grid;grid-template-columns:100px minmax(0,1fr) auto;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.meeting-topic p,.meeting-copy{margin:4px 0;line-height:1.55}
+.meeting-scroll .table-scroll{max-height:65dvh}
+@media(max-width:760px){.member-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:460px){.member-grid{grid-template-columns:1fr}.notice-line{grid-template-columns:minmax(85px,30%) minmax(0,1fr);gap:8px}.notice-line>.actions{grid-column:2}.meeting-topic{grid-template-columns:72px minmax(0,1fr) auto}}
+@media print{.meeting-scroll,.overview-scroll,.combined-scroll{overflow:visible}}
 </style>
 </head>
 <body>
 <section id="authRoot" class="auth-root"></section>
 <div id="appRoot" hidden>
 <aside class="sidebar">
- <div class="brand"><strong>环控团队工作看板</strong><small>V1.7</small></div>
+ <div class="brand"><strong>环控团队工作看板</strong><small>V1.8</small></div>
  <button class="nav" data-view="overview">团队工作总览</button>
- <button class="nav" data-view="quadrant">工作四象限</button>
- <button class="nav" data-view="tasks">重点任务交办</button>
- <button class="nav" data-view="meeting">周例会视图</button>
+ <button class="nav" data-view="tasks">四象限与重点交办</button>
+ <button class="nav" data-view="meeting">月度例会</button>
  <div class="identity"><strong id="signedName"></strong><small id="signedRole"></small><button data-act="logout">退出登录</button></div>
 </aside>
 <main class="main">
@@ -55,7 +76,7 @@ const LEGACY_KEYS = ['ec_team_board_pages_demo_v1','ec_team_board_demo_v1'];
 const BOARDS = ['IPD','LTC','ITR','TPD','能力建设'];
 const STATUSES = ['未开始','进行中','阻塞','待验收','已完成'];
 const QUADRANTS = {Q1:'重要且紧急',Q2:'重要不紧急',Q3:'紧急不重要',Q4:'不重要不紧急'};
-const VIEW_NAMES = {overview:'团队工作总览',quadrant:'团队工作四象限',tasks:'重点任务交办',meeting:'周例会视图',admin:'管理与备份'};
+const VIEW_NAMES = {overview:'团队工作总览',tasks:'四象限与重点交办',meeting:'月度例会',admin:'管理与备份'};
 const TEMPLATES = {
  review:{name:'设计评审',board:'IPD',deliverable:'评审纪要及问题关闭清单',milestones:'准备评审资料\n组织评审\n关闭评审问题'},
  test:{name:'试验验证',board:'TPD',deliverable:'试验报告、数据记录及验证结论',milestones:'确认试验方案\n完成试验\n审核验证结论'},
@@ -67,7 +88,9 @@ const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'
 const clone = value => JSON.parse(JSON.stringify(value));
 const uid = prefix => `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,9)}`;
 const localDate = date => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-const today = () => localDate(new Date());
+const today = () => new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai'}).format(new Date());
+const monthOK = value => typeof value==='string' && /^20\d{2}-(0[1-9]|1[0-2])$/.test(value);
+let meetingMonth= today().slice(0,7);
 function shiftDate(offset, from = today()) { const d = new Date(`${from}T12:00:00`); d.setDate(d.getDate()+offset); return localDate(d); }
 function weekRange() { const d = new Date(); d.setDate(d.getDate()-(d.getDay()+6)%7); const begin = localDate(d); return [begin,shiftDate(6,begin)]; }
 const dateOK = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(new Date(`${value}T12:00:00`).getTime()) && localDate(new Date(`${value}T12:00:00`)) === value;
@@ -75,7 +98,7 @@ const formatNumber = value => Number(value || 0).toLocaleString('zh-CN',{maximum
 const timestamp = () => new Date().toISOString();
 const shortDate = value => value ? String(value).slice(5,10).replace('-','/') : '待定';
 function initialData() {
- return {people:ROSTER.map((name,i)=>({id:String.fromCharCode(65+i),name,role:'待设置'})),tasks:[],notices:[],requests:[],settings:{teamDocUrl:'',baseUrl:''}};
+ return {people:ROSTER.map((name,i)=>({id:String.fromCharCode(65+i),name,role:'待设置'})),tasks:[],notices:[],requests:[],meetings:[],settings:{teamDocUrl:'',baseUrl:''}};
 }
 function normalizeData(input) {
  const source=input?.data || input;
@@ -90,12 +113,12 @@ function normalizeData(input) {
   const closedAt=t.status==='已完成'&&dateOK(t.closedAt)?t.closedAt:'';
   const allocationIDs=[...new Set([t.owner,...(t.allocations || []).map(a=>a.person)])];
   if(allocationIDs.some(id=>!known.has(id)))throw Error(`任务 ${t.id} 含无效协同人员`);
-  return {id:String(t.id),name:String(t.name),board:t.board,owner:t.owner,due:t.due,assignedAt,closedAt,archived:t.status==='已完成'&&Boolean(t.archived),important:Boolean(t.important),urgent:Boolean(t.urgent),key:Boolean(t.key),status:t.status,deliverable:String(t.deliverable || ''),resultLink:String(t.resultLink || ''),docLink:String(t.docLink || ''),allocations:allocationIDs.map(id=>({person:id,role:id===t.owner?'主责':'协同'})),milestones:(t.milestones || []).map(m=>({name:String(m.name || '节点'),done:Boolean(m.done)})),history:Array.isArray(t.history)?t.history:[],updatedAt:String(t.updatedAt || '')};
+  return {id:String(t.id),name:String(t.name),board:t.board,owner:t.owner,due:t.due,assignedAt,closedAt,archived:t.status==='已完成'&&Boolean(t.archived),important:Boolean(t.important),urgent:Boolean(t.urgent),key:Boolean(t.key),status:t.status,deliverable:String(t.deliverable || ''),resultLink:String(t.resultLink || ''),docLink:String(t.docLink || ''),allocations:allocationIDs.map(id=>({person:id,role:id===t.owner?'主责':'协同'})),milestones:(t.milestones || []).map(m=>({name:String(m.name || '节点'),done:Boolean(m.done)})),history:Array.isArray(t.history)?t.history:[],updatedAt:String(t.updatedAt || ''),...(monthOK(t.meetingMonth)?{meetingMonth:t.meetingMonth}:{})};
  });
  const notices=Array.isArray(source.notices)?source.notices:[],requests=Array.isArray(source.requests)?source.requests:[];
  for(const n of notices){if(!n.id||!n.title||!n.content||(n.expiry&&!dateOK(n.expiry)))throw Error('公告数据或日期无效');}
  for(const r of requests){if(!r.id||!r.name||!BOARDS.includes(r.board)||(r.due&&!dateOK(r.due)))throw Error('需求数据或日期无效');}
- return {people,tasks,notices,requests,settings:{teamDocUrl:String(source.settings?.teamDocUrl || ''),baseUrl:String(source.settings?.baseUrl || '')}};
+ return {people,tasks,notices,requests,meetings:Array.isArray(source.meetings)?source.meetings:[],settings:{teamDocUrl:String(source.settings?.teamDocUrl || ''),baseUrl:String(source.settings?.baseUrl || '')}};
 }
 let startupWarning='';
 let envelope={schema:3,revision:0,token:'0',data:initialData(),undo:[],backups:[],savedAt:''};
@@ -211,16 +234,53 @@ function archiveHTML(){
  return `<details class="archive-panel" id="archivePanel" ${prefs.archiveOpen?'open':''}><summary>已归档任务 <span class="pill">${archived.length}</span></summary>${tableHTML(archived,true)}</details>`;
 }
 function noticesHTML() {
- const notices=data.notices.filter(n=>!n.archived&&(!n.expiry || n.expiry>=today())).sort((a,b)=>Number(b.pinned)-Number(a.pinned)||String(b.createdAt).localeCompare(String(a.createdAt)));
- return `<div class="section-head"><h2>团队公告</h2>${isManager()?'<button class="small" data-act="notice">＋ 发布公告</button>':''}</div><section class="panel">${notices.map(n=>`<article class="notice"><div><details><summary>${n.pinned?'<span class="pill blue">置顶</span> ':''}${escapeHTML(n.title)}</summary><p>${escapeHTML(n.content)}</p></details><small>${escapeHTML(n.author || '主管')} · ${shortDate(n.createdAt)}${n.expiry?' · 有效至 '+n.expiry:''}</small></div>${isManager()?`<div class="actions"><button class="small plain" data-notice="${escapeHTML(n.id)}">编辑</button><button class="small plain" data-archive="${escapeHTML(n.id)}">归档</button></div>`:''}</article>`).join('') || '<div class="empty">暂无有效公告</div>'}</section>`;
+ const notices=data.notices.filter(n=>!n.archived&&(!n.expiry||n.expiry>=today()))
+  .sort((a,b)=>Number(b.pinned)-Number(a.pinned)||String(b.createdAt).localeCompare(String(a.createdAt)));
+ return `<section class="panel important-notices">
+  <div class="board-heading"><h2>重要通知</h2>${isManager()?'<button class="small" data-act="notice">发布公告</button>':''}</div>
+  <div class="notice-list">${notices.map(n=>`<article class="notice-line">
+   <strong>${n.pinned?'<span class="pill blue">置顶</span> ':''}${escapeHTML(n.title)}</strong>
+   <div class="notice-copy">${escapeHTML(n.content)}</div>
+   ${isManager()?`<div class="actions"><button class="small plain" data-notice="${escapeHTML(n.id)}">编辑</button><button class="small plain" data-archive="${escapeHTML(n.id)}">归档</button></div>`:''}
+  </article>`).join('')||'<div class="empty">暂无有效通知</div>'}</div>
+ </section>`;
 }
-function overviewHTML(){
- const tasks=filteredTasks().filter(t=>!t.archived);
- return `${kpisHTML()}${filtersHTML()}${batchHTML()}<section class="workspace">${tableHTML(tasks)}</section>${archiveHTML()}<details class="notice-panel"><summary>团队公告 <span class="pill">${data.notices.filter(n=>!n.archived&&(!n.expiry||n.expiry>=today())).length}</span></summary>${noticesHTML()}</details>`;
+function memberTasks(id) {
+ return data.tasks.filter(t=>t.owner===id||t.allocations.some(a=>a.person===id))
+  .sort((a,b)=>Number(overdue(b))-Number(overdue(a))||a.due.localeCompare(b.due));
+}
+function memberTaskHTML(task,id) {
+ return `<button class="member-task" data-task="${escapeHTML(task.id)}"><span>${escapeHTML(task.name)}
+  ${task.owner===id?'':'<small>协同</small>'}</span>${statusHTML(task)}${dueHTML(task)}</button>`;
+}
+function openMember(id) {
+ const tasks=memberTasks(id);
+ const groups=[
+  ['正在执行',tasks.filter(t=>isActive(t)&&!overdue(t))],
+  ['已逾期',tasks.filter(overdue)],
+  ['已完成',tasks.filter(t=>!isActive(t))]
+ ];
+ const sections=groups.map(([title,items])=>`<section class="panel member-group"><h3>${title} · ${items.length}</h3>
+  ${items.map(t=>memberTaskHTML(t,id)).join('')||'<p class="muted-block">暂无任务</p>'}</section>`);
+ showDialog('member',person(id).name+'的工作任务',sections.join(''),'<button data-act="close">关闭</button>');
+}
+function overviewHTML() {
+ const cards=data.people.map(p=>{
+  const active=memberTasks(p.id).filter(isActive);
+  return `<article class="panel member-card" data-member-card="${p.id}">
+   <div class="board-heading"><h3>${escapeHTML(p.name)} <small>${active.length} 项在办</small></h3>
+    <button class="small plain" data-member-open="${p.id}">展开</button></div>
+   ${active.slice(0,5).map(t=>memberTaskHTML(t,p.id)).join('')||'<p class="muted-block">暂无在办任务</p>'}
+  </article>`;
+ });
+ return `<div class="overview-scroll">${noticesHTML()}
+  <section class="overview-summary"><h2>工作总览</h2>${kpisHTML()}</section>
+  <section><div class="board-heading"><h2>工作看板</h2><small>双击成员模块或点击展开查看完整任务</small></div>
+  <div class="member-grid">${cards.join('')}</div></section>${archiveHTML()}</div>`;
 }
 function quadrantHTML() {
  const tasks=filteredTasks().filter(t=>isActive(t)&&!t.archived);
- return `${filtersHTML()}<div class="quadrants">${Object.entries(QUADRANTS).map(([id,name])=>{const group=tasks.filter(t=>quadrant(t)===id);return `<section class="quadrant ${id}"><header class="quad-head"><h2>${id} · ${name}</h2><small>${group.length} 项</small></header>${group.map(t=>`<button class="quad-card" data-task="${escapeHTML(t.id)}"><strong>${escapeHTML(t.name)}</strong><span class="meta"><span>${escapeHTML(person(t.owner).name)} · ${dueHTML(t)}</span>${statusHTML(t)}</span></button>`).join('') || '<div class="empty">暂无在办任务</div>'}</section>`;}).join('')}</div>`;
+ return `<div class="quadrants">${Object.entries(QUADRANTS).map(([id,name])=>{const group=tasks.filter(t=>quadrant(t)===id);return `<section class="quadrant ${id}"><header class="quad-head"><h2>${id} · ${name}</h2><small>${group.length} 项</small></header>${group.map(t=>`<button class="quad-card" data-task="${escapeHTML(t.id)}"><strong>${escapeHTML(t.name)}</strong><span class="meta"><span>${escapeHTML(person(t.owner).name)} · ${dueHTML(t)}</span>${statusHTML(t)}</span></button>`).join('') || '<div class="empty">暂无在办任务</div>'}</section>`;}).join('')}</div>`;
 }
 function requestsHTML() {
  const requests=data.requests.filter(r=>r.status==='待分派');
@@ -229,10 +289,61 @@ function requestsHTML() {
 function assignmentHTML(){
  const tabs=[['all','全部在办'],['未开始','待接收'],['进行中','进行中'],['阻塞','阻塞'],['待验收','待验收'],['已完成','已关闭']];
  const tasks=filteredTasks().filter(t=>t.key&&!t.archived&&(prefs.taskTab==='all'?isActive(t):t.status===prefs.taskTab));
- return `${filtersHTML()}<div class="tabs">${tabs.map(([status,label])=>`<button class="small ${prefs.taskTab===status?'active':''}" data-tab="${status}">${label}</button>`).join('')}</div>${batchHTML()}<section class="workspace">${tableHTML(tasks)}</section>${archiveHTML()}<details class="notice-panel"><summary>需求池 ${data.requests.filter(r=>r.status==='待分派').length} 条</summary>${requestsHTML()}</details>`;
+ return `<div class="combined-scroll">${filtersHTML()}<h2>工作四象限</h2>${quadrantHTML()}<h2>重点任务交办</h2><div class="tabs">${tabs.map(([status,label])=>`<button class="small ${prefs.taskTab===status?'active':''}" data-tab="${status}">${label}</button>`).join('')}</div>${batchHTML()}<section class="workspace">${tableHTML(tasks)}</section>${archiveHTML()}<details class="notice-panel"><summary>需求池 ${data.requests.filter(r=>r.status==='待分派').length} 条</summary>${requestsHTML()}</details></div>`;
 }
-function meetingHTML(){return `${kpisHTML()}${filtersHTML()}<section class="workspace meeting">${tableHTML(filteredTasks().filter(t=>!t.archived))}</section><div class="footer-tools"><small>交办、交期、关闭状态同屏查看</small>${isManager()?'<button class="small" data-act="notice">记录会议公告</button>':''}</div>`;}
-function feishuPanelHTML(){const f=ui.feishu;return `<section class="panel"><div class="section-head"><h2>飞书自动同步</h2><div class="actions"><button class="small" data-act="feishu-status">检查状态</button><button class="small primary" data-act="feishu-run">立即同步</button><button class="small" data-act="feishu-retry">重试失败</button></div></div><p class="muted-block">看板主写，飞书单向同步。任务、里程碑与反馈、需求和公告由后台队列处理；通常一分钟内开始同步。</p><p>${f?(f.enabled?'已启用':'未启用')+' · 待同步 '+f.pending+' · 失败 '+f.failed:'正在检查'}</p>${f?.last_error?`<p class="error-text">${escapeHTML(f.last_error)}</p>`:''}<small>最近处理：${f?.last_run?new Date(f.last_run).toLocaleString('zh-CN'):'尚未运行'}</small><p class="muted-block">员工使用成员表的稳定编号关联；飞书人员账号及消息提醒尚未绑定。App Secret 仅在服务端保存。</p></section>`;}
+function meetingHTML() {
+ const entries=data.meetings.filter(item=>item.month===meetingMonth);
+ const minutes=entries.find(item=>item.kind==='minutes');
+ const tasks=data.tasks.filter(task=>task.meetingMonth===meetingMonth);
+ const topics=data.people.map(p=>{
+  const item=entries.find(entry=>entry.kind==='agenda'&&entry.memberId===p.id);
+  return `<article class="meeting-topic"><strong>${escapeHTML(p.name)}</strong>
+   <div>${item?`<b>${escapeHTML(item.title)}</b><p>${escapeHTML(item.content)}</p>`:'<small>待填写</small>'}</div>
+   ${profile.member_id===p.id?`<button class="small" data-act="meeting-agenda">${item?'修改':'填写'}</button>`:''}</article>`;
+ });
+ return `<div class="meeting-scroll">
+  <label class="meeting-month">例会月份 <input id="meetingMonth" type="month" min="2000-01" max="2099-12" value="${meetingMonth}"></label>
+  <section class="panel"><div class="board-heading"><h2>会前沟通内容</h2><small>已填写 ${entries.filter(item=>item.kind==='agenda').length} / ${data.people.length}</small></div>${topics.join('')}</section>
+  <section class="panel"><div class="board-heading"><h2>会议记录</h2>${isManager()?'<button class="small" data-act="meeting-minutes">编辑会议记录</button>':''}</div>
+  ${minutes?`<strong>${escapeHTML(minutes.title)}</strong> <small>${escapeHTML(minutes.meetingDate)}</small><p class="meeting-copy">${escapeHTML(minutes.content)}</p>`:'<p class="muted-block">暂无会议记录</p>'}</section>
+  <section class="panel"><div class="board-heading"><h2>会议交办</h2>${isManager()?'<button class="small primary" data-act="meeting-assign">交办会议任务</button>':''}</div>
+  ${tableHTML(tasks,true)}</section>
+ </div>`;
+}
+function meetingForm(kind) {
+ if(kind==='minutes'&&!isManager())return;
+ const item=data.meetings.find(entry=>entry.month===meetingMonth&&entry.kind===kind&&(kind==='minutes'||entry.memberId===profile.member_id));
+ const isMinutes=kind==='minutes';
+ ui.meetingEntry={kind,month:meetingMonth};
+ showDialog('meeting-entry',isMinutes?'会议记录':'会前沟通内容',`<form id="editForm">
+  <label class="field">主题<input name="meetingTitle" autofocus required maxlength="120" value="${escapeHTML(item?.title||'')}"></label>
+  ${isMinutes?`<label class="field">会议日期<input name="meetingDate" type="date" required min="${meetingMonth}-01" max="${meetingMonth}-${new Date(Number(meetingMonth.slice(0,4)),Number(meetingMonth.slice(5)),0).getDate()}" value="${escapeHTML(item?.meetingDate||'')}"></label>`:''}
+  <label class="field">${isMinutes?'会议记录与决议':'需要沟通的事项或需要的支持'}<textarea name="meetingContent" required maxlength="5000" rows="8">${escapeHTML(item?.content||'')}</textarea></label>
+ </form>`,'<button data-act="close">取消</button><button class="primary" data-act="meeting-save">保存</button>',meetingMonth);
+}
+async function saveMeetingEntry() {
+ if(ui.writing||ui.dialog!=='meeting-entry'||!formValid())return;
+ const {kind,month}=ui.meetingEntry;
+ const title=String(formValue('meetingTitle')||'').trim();
+ const content=String(formValue('meetingContent')||'').trim();
+ if(!title||!content)return formError('请填写主题和内容');
+ ui.writing=true;
+ try {
+  const result=await rpc('ec_board_save_meeting',{
+   p_revision:Number(ui.editToken),p_month:month,p_kind:kind,p_title:title,
+   p_content:content,p_date:String(formValue('meetingDate')||'')
+  });
+  envelope={...result,token:String(result.revision),data:normalizeData(result),undo:[],backups:envelope.backups};
+  data=envelope.data;
+  closeDialog(true);
+  render();
+  setSaveState('云端已保存');
+  showToast('例会内容已保存，等待飞书同步');
+ } catch(error) {
+  formError(error.code==='PT409'?'数据已更新。复制当前填写内容后刷新，并重新打开表单。':error.message);
+ } finally {ui.writing=false;}
+}
+function feishuPanelHTML(){const f=ui.feishu;return `<section class="panel"><div class="section-head"><h2>飞书自动同步</h2><div class="actions"><button class="small" data-act="feishu-status">检查状态</button><button class="small primary" data-act="feishu-run">立即同步</button><button class="small" data-act="feishu-retry">重试失败</button></div></div><p class="muted-block">看板主写，飞书单向同步。任务、里程碑与反馈、需求、公告和月度例会由后台队列处理；通常一分钟内开始同步。</p><p>${f?(f.enabled?'已启用':'未启用')+' · 待同步 '+f.pending+' · 失败 '+f.failed:'正在检查'}</p>${f?.last_error?`<p class="error-text">${escapeHTML(f.last_error)}</p>`:''}<small>最近处理：${f?.last_run?new Date(f.last_run).toLocaleString('zh-CN'):'尚未运行'}</small><p class="muted-block">员工使用成员表的稳定编号关联；飞书人员账号及消息提醒尚未绑定。App Secret 仅在服务端保存。</p></section>`;}
 function adminHTML(){
  if(!isManager())return '';
  return `<div class="admin-scroll">${feishuPanelHTML()}<section class="panel"><div class="section-head"><h2>注册账号与权限开通</h2><button class="small" data-act="load-accounts">刷新申请</button></div><p class="muted-block">核对注册人后，绑定对应员工并开通员工或主管权限。停用即时阻止后续数据访问。</p><div class="accounts">${ui.accounts.map(a=>`<div class="account-row"><div><b>${escapeHTML(a.name)}</b><small>${escapeHTML(accountLabel(a.email))} · ${a.status==='active'?'已开通':a.status==='disabled'?'已停用':'待开通'}</small></div><select data-account-member="${a.user_id}" aria-label="${escapeHTML(accountLabel(a.email))}绑定员工">${peopleOptions(a.member_id || data.people.find(p=>p.name===a.name)?.id)}</select><select data-account-role="${a.user_id}" aria-label="${escapeHTML(accountLabel(a.email))}权限"><option value="employee" ${a.role==='employee'?'selected':''}>员工</option><option value="supervisor" ${a.role==='supervisor'?'selected':''}>主管（管理员）</option></select><button class="small primary" data-enable="${a.user_id}">开通 / 保存</button>${a.status==='active'?`<button class="small danger" data-disable="${a.user_id}">停用</button>`:''}</div>`).join('') || '<p class="muted-block">暂无注册申请</p>'}</div></section><section class="panel"><h2>云端备份与数据迁移</h2><div class="actions"><button data-act="export-json">导出完整备份</button><button data-act="import">导入 JSON</button><button data-act="import-legacy">迁移本浏览器旧版数据</button><button data-act="export-csv">导出任务 CSV</button></div><p class="muted-block">旧版数据导入后移除原计划投入字段。缺少交办或关闭日期的历史任务标为未记录。</p><div class="backup-list">${envelope.backups.map(b=>`<div class="backup-row"><span>${escapeHTML(b.label)}<br><small>${new Date(b.at).toLocaleString('zh-CN')}</small></span><button class="small" data-backup="${b.id}">预览恢复</button></div>`).join('')}</div></section><section class="panel"><h2>文档与界面</h2><label class="field">团队知识库 HTTPS 链接<input id="knowledgeLink" value="${escapeHTML(data.settings.teamDocUrl)}"></label><label class="field">多维表格 HTTPS 链接（更换后需重新配置同步）<input id="tableLink" value="${escapeHTML(data.settings.baseUrl)}"></label><div class="actions"><button data-act="save-links">保存链接</button><button data-act="reset-view">重置视图</button></div><p class="muted-block">飞书同步独立于账号权限；更换表格链接会暂停同步，防止误写其他表格。</p></section></div>`;
@@ -243,6 +354,8 @@ function render() {
  const existingIDs=new Set(data.tasks.map(t=>t.id));
  ui.selected=new Set([...ui.selected].filter(id=>existingIDs.has(id)));
  const scroll=window.scrollY;
+ const scrollClass='.overview-scroll,.combined-scroll,.meeting-scroll';
+ const innerScroll=$('#page').querySelector(scrollClass)?.scrollTop||0;
  const searchActive=document.activeElement?.id==='search';
  const caret=searchActive?$('#search').selectionStart:null;
  $('#signedName').textContent=profile.name;$('#signedRole').textContent=isManager()?'主管 · 管理员':'员工';
@@ -251,9 +364,11 @@ function render() {
  document.querySelectorAll('[data-view]').forEach(button=>{button.classList.toggle('active',button.dataset.view===prefs.view);button.setAttribute('aria-current',button.dataset.view===prefs.view?'page':'false');});
  $('#crumb').textContent=VIEW_NAMES[prefs.view];
  $('#crumb').title='已注册用户访问 · 云端共享';
- const pages={overview:overviewHTML,quadrant:quadrantHTML,tasks:assignmentHTML,meeting:meetingHTML,admin:adminHTML};
- const descriptions={overview:'按员工查看任务、交办与关闭日期',quadrant:'重要性 × 紧急性 · 点击任务即可更新',tasks:'从交办、接收，到成果验收',meeting:'交办、交期与关闭状态同屏查看',admin:'人员、备份、偏好与接口状态'};
+ const pages={overview:overviewHTML,tasks:assignmentHTML,meeting:meetingHTML,admin:adminHTML};
+ const descriptions={overview:'按员工查看任务、交办与关闭日期',tasks:'从交办、接收，到成果验收',meeting:'会前沟通、会议记录与交办跟踪',admin:'人员、备份、偏好与接口状态'};
  $('#page').innerHTML=`<header class="pagehead"><div><h1>${VIEW_NAMES[prefs.view]}</h1><p>${descriptions[prefs.view]}</p></div><div class="toolbar">${['overview','tasks','meeting'].includes(prefs.view)?'<button class="small" data-act="export-csv">导出台账</button>':''}${prefs.view==='meeting'?'<button class="small" data-act="print">打印</button>':''}</div></header>${pages[prefs.view]()}`;
+ const scrollBody=$(scrollClass);
+ if(scrollBody)scrollBody.scrollTop=innerScroll;
  renderBanner();remember();
  window.scrollTo({top:scroll,behavior:'instant'});
  if(searchActive && $('#search')){$('#search').focus();$('#search').setSelectionRange(caret,caret);}
@@ -282,11 +397,11 @@ function closeDialog(force=false) {
 function formValue(name) {return new FormData($('#editForm')).get(name);}
 function formError(message) {$('#formFeedback').textContent=message;}
 function formValid() {return $('#editForm').reportValidity();}
-function taskForm(owner='',copyID='',requestID=''){
+function taskForm(owner='',copyID='',requestID='',month=''){
  if(!isManager())return;
  const old=data.tasks.find(t=>t.id===copyID),request=data.requests.find(r=>r.id===requestID),selected=owner||old?.owner||prefs.lastOwner;
- ui.newRequest=requestID;
- showDialog('new','交办任务',`<form id="editForm"><div class="form-grid"><label class="field">常用模板<select id="template" name="template"><option value="">自定义</option>${Object.entries(TEMPLATES).map(([key,t])=>`<option value="${key}">${t.name}</option>`).join('')}</select></label><label class="field">交办给员工 *<select name="owner">${peopleOptions(selected)}</select></label></div><label class="field">任务名称 *<input name="name" autofocus required maxlength="120" value="${escapeHTML(old?old.name+'（副本）':request?.name||'')}"></label><div class="form-grid"><label class="field">交办日期 *<input name="assignedAt" type="date" required value="${today()}"></label><label class="field">计划交付日期 *<input name="due" type="date" required value="${shiftDate(7)}"></label><label class="field">业务板块<select name="board">${options(BOARDS,old?.board||request?.board||prefs.lastBoard)}</select></label><label class="field">优先级<select name="quadrant">${Object.entries(QUADRANTS).map(([q,v])=>`<option value="${q}" ${q===(old?quadrant(old):'Q2')?'selected':''}>${q} · ${v}</option>`).join('')}</select></label></div><label class="field">验收交付物 *<textarea name="deliverable" rows="2" required maxlength="600">${escapeHTML(old?.deliverable||'')}</textarea></label><label class="field"><span><input name="key" type="checkbox" checked> 列为重点任务</span></label><details class="advanced"><summary>协同人员、里程碑和文档</summary><div class="support-grid">${data.people.map(p=>`<label><input type="checkbox" data-support="${p.id}" ${old?.allocations.some(a=>a.person===p.id&&a.role==='协同')?'checked':''}> ${escapeHTML(p.name)}</label>`).join('')}</div><label class="field">里程碑，每行一个<textarea name="milestones" rows="3">${escapeHTML(old?.milestones.map(m=>m.name).join('\n')||'')}</textarea></label><label class="field">任务依据 HTTPS 文档<input name="docLink" type="url" value="${escapeHTML(old?.docLink||'')}"></label></details></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-new">交办并保存</button>');
+ ui.newRequest=requestID;ui.newMeetingMonth=month;
+ showDialog('new',month?month+' 会议交办':'交办任务',`<form id="editForm"><div class="form-grid"><label class="field">常用模板<select id="template" name="template"><option value="">自定义</option>${Object.entries(TEMPLATES).map(([key,t])=>`<option value="${key}">${t.name}</option>`).join('')}</select></label><label class="field">交办给员工 *<select name="owner">${peopleOptions(selected)}</select></label></div><label class="field">任务名称 *<input name="name" autofocus required maxlength="120" value="${escapeHTML(old?old.name+'（副本）':request?.name||'')}"></label><div class="form-grid"><label class="field">交办日期 *<input name="assignedAt" type="date" required value="${today()}"></label><label class="field">计划交付日期 *<input name="due" type="date" required value="${shiftDate(7)}"></label><label class="field">业务板块<select name="board">${options(BOARDS,old?.board||request?.board||prefs.lastBoard)}</select></label><label class="field">优先级<select name="quadrant">${Object.entries(QUADRANTS).map(([q,v])=>`<option value="${q}" ${q===(old?quadrant(old):'Q2')?'selected':''}>${q} · ${v}</option>`).join('')}</select></label></div><label class="field">验收交付物 *<textarea name="deliverable" rows="2" required maxlength="600">${escapeHTML(old?.deliverable||'')}</textarea></label><label class="field"><span><input name="key" type="checkbox" checked> 列为重点任务</span></label><details class="advanced"><summary>协同人员、里程碑和文档</summary><div class="support-grid">${data.people.map(p=>`<label><input type="checkbox" data-support="${p.id}" ${old?.allocations.some(a=>a.person===p.id&&a.role==='协同')?'checked':''}> ${escapeHTML(p.name)}</label>`).join('')}</div><label class="field">里程碑，每行一个<textarea name="milestones" rows="3">${escapeHTML(old?.milestones.map(m=>m.name).join('\n')||'')}</textarea></label><label class="field">任务依据 HTTPS 文档<input name="docLink" type="url" value="${escapeHTML(old?.docLink||'')}"></label></details></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-new">交办并保存</button>');
 }
 
 async function saveNewTask(){
@@ -296,9 +411,10 @@ async function saveNewTask(){
  const collaborators=[...document.querySelectorAll('[data-support]:checked')].map(x=>x.dataset.support).filter(id=>id!==owner);
  const lines=String(f.get('milestones')||'').split(/\r?\n/).map(v=>v.trim()).filter(Boolean);
  const task={id:uid('TASK'),name:String(f.get('name')).trim(),owner,board:String(f.get('board')),assignedAt:String(f.get('assignedAt')),due:String(f.get('due')),closedAt:'',archived:false,status:'未开始',important:['Q1','Q2'].includes(q),urgent:['Q1','Q3'].includes(q),key:f.get('key')==='on',deliverable:String(f.get('deliverable')).trim(),docLink:doc,resultLink:'',allocations:[{person:owner,role:'主责'},...collaborators.map(person=>({person,role:'协同'}))],milestones:(lines.length?lines:['需求确认','执行交付','成果验收']).map(name=>({name,done:false})),history:[],updatedAt:timestamp()};
+ if(ui.newMeetingMonth)task.meetingMonth=ui.newMeetingMonth;
  if(!task.name||!task.deliverable)return formError('请填写任务名称与验收交付物');
  log(task,'主管交办');
- if(await commit('任务已交办',draft=>{draft.tasks.unshift(task);if(ui.newRequest){const r=draft.requests.find(r=>r.id===ui.newRequest);r.status='已分派';r.taskId=task.id;}})){prefs.lastOwner=owner;prefs.lastBoard=task.board;prefs.taskTab='未开始';prefs.search='';prefs.board='all';prefs.status='all';prefs.quick='all';closeDialog(true);navigate('overview');}
+ if(await commit('任务已交办',draft=>{draft.tasks.unshift(task);if(ui.newRequest){const r=draft.requests.find(r=>r.id===ui.newRequest);r.status='已分派';r.taskId=task.id;}})){prefs.lastOwner=owner;prefs.lastBoard=task.board;prefs.taskTab='未开始';prefs.search='';prefs.board='all';prefs.status='all';prefs.quick='all';closeDialog(true);navigate(task.meetingMonth?'meeting':'overview');}
 }
 function taskActions(task) {
  if(!canEdit(task))return '<button data-act="close">关闭</button>';
@@ -472,6 +588,10 @@ async function handleAction(action,button) {
   case 'save-new':saveNewTask();break;
   case 'save-task':saveTask();break;
   case 'notice':noticeForm();break;
+  case 'meeting-agenda':meetingForm('agenda');break;
+  case 'meeting-minutes':meetingForm('minutes');break;
+  case 'meeting-assign':taskForm('','','',meetingMonth);break;
+  case 'meeting-save':await saveMeetingEntry();break;
   case 'save-notice':saveNotice();break;
   case 'request':requestForm();break;
   case 'save-request':saveRequest();break;
@@ -588,7 +708,8 @@ document.addEventListener('click',event=>{
 
  if(button.dataset.view)return navigate(button.dataset.view);
  if(button.dataset.act)return handleAction(button.dataset.act,button);
- if(button.dataset.task)return openTask(button.dataset.task);
+ if(button.dataset.memberOpen)return openMember(button.dataset.memberOpen);
+ if(button.dataset.task){if(ui.dialog==='member')closeDialog(true);return openTask(button.dataset.task);}
  if(button.dataset.newOwner)return taskForm(button.dataset.newOwner);
  if(button.dataset.quick){prefs.quick=button.dataset.quick;render();return;}
  if(button.dataset.tab){prefs.taskTab=button.dataset.tab;render();return;}
@@ -601,6 +722,11 @@ document.addEventListener('click',event=>{
  if(button.dataset.backup&&isManager()){const backup=envelope.backups.find(b=>b.id===button.dataset.backup);if(backup)previewImport(backup.data,'自动备份恢复预览');return;}
  if(button.dataset.transition)return saveTask(button.dataset.transition);
 });
+document.addEventListener('dblclick',event=>{
+ if(event.target.closest('button,a,input'))return;
+ const card=event.target.closest('[data-member-card]');
+ if(card)openMember(card.dataset.memberCard);
+});
 document.addEventListener('input',event=>{
  if(event.target.id==='search'){prefs.search=event.target.value;prefs.page=0;render();}
  if(['knowledgeLink','tableLink'].includes(event.target.id))ui.pageDirty=true;
@@ -608,6 +734,7 @@ document.addEventListener('input',event=>{
 });
 document.addEventListener('change',async event=>{
  const input=event.target;
+ if(input.id==='meetingMonth'){if(monthOK(input.value)){meetingMonth=input.value;render();}return;}
  if(input.dataset.milestone!==undefined){if(ui.milestoneWrite)await ui.milestoneWrite;ui.milestoneWrite=saveMilestones();await ui.milestoneWrite;ui.milestoneWrite=null;return;}
  const filterKeys={boardFilter:'board',statusFilter:'status',sortFilter:'sort'};
  if(filterKeys[input.id]){prefs[filterKeys[input.id]]=input.value;prefs.page=0;render();return;}
@@ -622,12 +749,12 @@ document.addEventListener('submit',async event=>{
  if(event.target.id==='authForm'){event.preventDefault();await authSubmit(event.target);return;}
  if(event.target.id==='nameForm'){event.preventDefault();try{await resolveProfile(String(new FormData(event.target).get('name')));}catch(error){$('#authMessage').textContent=error.message;}return;}
  if(event.target.id==='claimForm'){event.preventDefault();try{profile=await rpc('ec_board_claim_admin',{p_token:String(new FormData(event.target).get('code')).trim()});await resolveProfile();}catch(error){$('#authMessage').textContent=error.message;}return;}
- if(event.target.id==='editForm'){event.preventDefault();if(ui.dialog==='new')saveNewTask();if(ui.dialog==='task')saveTask();if(ui.dialog==='notice')saveNotice();if(ui.dialog==='request')saveRequest();}});
+ if(event.target.id==='editForm'){event.preventDefault();if(ui.dialog==='new')saveNewTask();if(ui.dialog==='task')saveTask();if(ui.dialog==='notice')saveNotice();if(ui.dialog==='meeting-entry')saveMeetingEntry();if(ui.dialog==='request')saveRequest();}});
 $('#dialog').addEventListener('cancel',event=>{event.preventDefault();if(ui.dialog!=='conflict')closeDialog();});
 document.addEventListener('keydown',event=>{
  if(profile?.status!=='active')return;
  const typing=/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)||event.target.isContentEditable;
- if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'&&ui.dialog){event.preventDefault();if(ui.dialog==='task')saveTask();if(ui.dialog==='new')saveNewTask();return;}
+ if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'&&ui.dialog){event.preventDefault();if(ui.dialog==='task')saveTask();if(ui.dialog==='new')saveNewTask();if(ui.dialog==='meeting-entry')saveMeetingEntry();return;}
  if(typing||ui.dialog||event.ctrlKey||event.metaKey||event.altKey)return;
  if(event.key==='/'){event.preventDefault();if(!$('#search'))navigate('overview');$('#search')?.focus();}
  if(event.key.toLowerCase()==='n'&&isManager()){event.preventDefault();taskForm();}
