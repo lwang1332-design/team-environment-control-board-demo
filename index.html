@@ -140,6 +140,38 @@ body{font-size:13px}.sidebar{width:184px;padding:20px 12px}.brand{margin:0 6px 2
 @media print{.masthead,.dashboard-nav{display:none!important}}
 
 
+
+#appRoot:not([hidden]){
+ display:grid;
+ grid-template-columns:148px minmax(0,1fr);
+ grid-template-rows:auto minmax(0,1fr);
+}
+.masthead{grid-column:1/-1}
+.dashboard-nav{
+ display:flex;flex-direction:column;align-items:stretch;
+ min-height:0;gap:5px;padding:13px 10px;overflow:auto;
+ border:0;border-right:1px solid #d6e4f3;background:#f9fcff;
+}
+.dashboard-nav .nav{
+ flex:none;min-height:40px;padding:8px 12px;text-align:left;
+ line-height:1.4;white-space:normal;overflow-wrap:anywhere;
+}
+.main{min-width:0}
+@media(max-width:850px){
+ #appRoot:not([hidden]){height:auto;min-height:100dvh;grid-template-columns:104px minmax(0,1fr)}
+ .dashboard-nav{padding:10px 6px}
+ .dashboard-nav .nav{padding:7px 8px}
+}
+@media(max-width:550px){
+ #appRoot:not([hidden]){grid-template-columns:68px minmax(0,1fr)}
+ .dashboard-nav{padding:8px 4px}
+ .dashboard-nav .nav{text-align:center;padding:6px 3px}
+ .topbar,.content{padding-left:8px;padding-right:8px}
+ .dashboard-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media print{
+ #appRoot:not([hidden]){display:block;height:auto;min-height:0}
+}
 </style>
 </head>
 <body>
