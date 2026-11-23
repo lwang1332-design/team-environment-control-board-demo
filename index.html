@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>环控团队工作看板 V1.9</title>
+<title>环控团队工作看板 V2.0</title>
 <style>
 :root{--navy:#122b49;--blue:#215fbd;--ink:#20334b;--muted:#697c92;--line:#dfe7f0;--bg:#f4f7fb;--red:#b63143;--orange:#9a5f10;--green:#13735e}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Inter,"Microsoft YaHei","PingFang SC",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}a{color:var(--blue)}button,input,select,textarea{outline-offset:3px}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8db8ff}button{border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);padding:8px 12px}button:hover{background:#edf4ff}.primary{background:var(--blue);border-color:var(--blue);color:#fff}.primary:hover{background:#184a96}.danger{color:var(--red)}.plain{background:none;border:0;padding:3px;color:var(--blue)}.small{font-size:12px;padding:5px 9px}.muted,small{color:var(--muted)}.sidebar{background:var(--navy);color:#fff;width:232px;position:fixed;inset:0 auto 0 0;padding:28px 16px;display:flex;flex-direction:column;gap:9px}.brand{margin:0 10px 24px}.brand strong{font-size:18px;display:block}.brand small{color:#b8cae3;display:block;margin-top:7px}.nav{border:0;color:#dbe8fa;background:none;text-align:left;padding:13px 15px;font-weight:600}.nav.active{background:#2b568c;color:#fff}.identity{margin-top:auto;border-top:1px solid #44617f;padding-top:18px}.identity label{font-size:12px;display:block;color:#c5d6eb;margin-bottom:7px}.identity select{width:100%;margin-bottom:9px}.identity small{font-size:11px;color:#c5d6eb;line-height:1.6}.main{margin-left:232px}.topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:5;min-height:67px;padding:14px 26px;display:flex;gap:12px;align-items:center;justify-content:space-between}.top-actions,.toolbar,.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.save-state{font-size:12px;color:var(--green)}.save-state.error{color:var(--red)}.content{max-width:1550px;padding:24px 26px 64px;margin:auto}.pagehead{display:flex;justify-content:space-between;gap:18px;margin-bottom:20px;align-items:center}.pagehead h1{font-size:26px;margin:0 0 7px}.pagehead p{color:var(--muted);margin:0;font-size:13px}.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:20px}.kpi,.panel,.person,.quadrant{background:#fff;border:1px solid var(--line);border-radius:12px}.kpi{padding:16px}.kpi span{color:var(--muted);font-size:12px}.kpi strong{display:block;font-size:27px;margin:10px 0 4px}.kpi small{font-size:11px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:22px 0 12px}h2{font-size:17px;margin:0}h3{font-size:15px;margin:0 0 10px}.panel{padding:18px}.panel+.panel{margin-top:14px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.filters input{flex:1;min-width:190px}.filters select{max-width:190px}.quick{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}.quick .active,.tabs .active{background:#e7f0ff;color:#1955a5;border-color:#95b7e8}.count{font-size:12px;color:var(--muted)}input,select,textarea{border:1px solid #cdd9e6;border-radius:7px;padding:9px 10px;min-width:0;background:#fff;color:var(--ink)}textarea{resize:vertical;line-height:1.6}input[type=checkbox]{accent-color:var(--blue);width:17px;height:17px;padding:0;vertical-align:middle}input[type=date]{min-width:120px}.people-grid{display:grid;gap:12px}.person{overflow:hidden}.person-head{display:flex;align-items:center;gap:13px;padding:15px 17px}.person-toggle{background:none;border:0;text-align:left;display:flex;align-items:center;gap:11px;min-width:185px;padding:0}.avatar{background:#e9f1fc;color:#245b9b;width:37px;height:37px;border-radius:10px;display:grid;place-items:center;font-weight:700}.person-name{font-weight:700;display:block;font-size:15px}.person-role{display:block;font-size:11px;color:var(--muted);margin-top:4px}.load{margin-left:auto;min-width:190px;max-width:290px;width:27%}.load-line{font-size:12px;display:flex;justify-content:space-between;gap:10px}.bar{background:#e8eef6;border-radius:10px;height:6px;margin-top:7px;overflow:hidden}.bar i{display:block;height:100%;background:#4f84ce}.bar.over i{background:#d26854}.pill{display:inline-block;white-space:nowrap;font-size:11px;border-radius:5px;padding:4px 7px;background:#eef2f6;color:#596c84}.pill.red{background:#fff0f2;color:var(--red)}.pill.orange{background:#fff3e4;color:var(--orange)}.pill.blue{background:#eaf2ff;color:#205aab}.pill.green{background:#e8f6f1;color:var(--green)}.task-row{display:grid;grid-template-columns:28px minmax(210px,2.4fr) minmax(90px,.85fr) minmax(100px,1fr) minmax(100px,.9fr) 88px;gap:10px;align-items:center;padding:12px 17px;border-top:1px solid var(--line);font-size:12px}.task-title{text-align:left;display:block;background:none;border:0;padding:0;font-weight:650;color:#245a9c;font-size:13px;line-height:1.5}.task-title:hover{text-decoration:underline;background:none}.task-sub{color:var(--muted);font-size:11px;margin-top:5px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.task-row select,.task-row input{max-width:100%;font-size:12px;padding:6px;min-height:32px}.date-input input{width:100%}.hours{display:flex;gap:5px;align-items:center}.hours input{width:64px}.businesses{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.businesses .panel{padding:13px}.businesses strong{display:block;font-size:22px;margin:8px 0}.notice{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid var(--line)}.notice:last-child{border-bottom:0}.notice p{white-space:pre-wrap;line-height:1.7;font-size:13px}.notice summary{cursor:pointer;font-weight:650;line-height:1.6}.notice small{display:block;margin-top:7px}.notice .actions{align-self:start}.quadrants{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quadrant{overflow:hidden}.quad-head{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;border-top:3px solid #adb8c6}.quadrant.Q1 .quad-head{border-top-color:#d15f63;background:#fff6f6}.quadrant.Q2 .quad-head{border-top-color:#4e84c9;background:#f3f7ff}.quadrant.Q3 .quad-head{border-top-color:#d3a15b;background:#fff9f0}.quad-card{display:block;width:100%;padding:13px 16px;border:0;border-bottom:1px solid var(--line);border-radius:0;text-align:left}.quad-card strong{font-size:13px}.quad-card .meta{display:flex;justify-content:space-between;gap:10px;margin-top:9px;font-size:12px;align-items:center}.empty{text-align:center;padding:28px 12px;color:var(--muted);font-size:13px}.tabs{display:flex;gap:7px;flex-wrap:wrap}.assignment{display:grid;grid-template-columns:26px minmax(170px,1.5fr) minmax(170px,1.4fr) minmax(130px,1fr) 90px 110px;gap:14px;align-items:start;padding:16px;border-bottom:1px solid var(--line);font-size:12px;overflow-wrap:anywhere}.assignment:last-child{border-bottom:0}.assignment small{display:block;margin-bottom:6px}.batch-bar{position:sticky;top:67px;z-index:4;display:flex;justify-content:space-between;gap:10px;background:#e7f0ff;border:1px solid #a9c4ea;border-radius:9px;padding:10px 13px;margin-bottom:14px;align-items:center;flex-wrap:wrap}.request{padding:12px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;justify-content:space-between}.request p{font-size:12px;color:var(--muted);margin:7px 0}.request:last-child{border-bottom:0}.meeting{overflow:auto}.meeting table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}.meeting th,.meeting td{padding:12px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.meeting th{font-size:12px;color:var(--muted)}.meeting h2{margin-bottom:10px}.note{font-size:12px;line-height:1.7;background:#eef4fc;padding:11px 13px;border-radius:8px;color:#4f6989}.warning{background:#fff4e3;color:#8a5715}.muted-block{color:var(--muted);font-size:12px;line-height:1.8}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.admin-grid .panel{margin:0}.member-editor{display:grid;grid-template-columns:100px minmax(100px,1fr) 74px;gap:9px;align-items:center;margin-bottom:10px;font-size:12px}.member-editor input{width:100%}.backup-list{max-height:270px;overflow:auto}.backup-row{padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;justify-content:space-between;font-size:12px}.dialog{position:fixed;inset:0;border:0;padding:0;width:100%;height:100%;max-width:none;max-height:none;background:#142d4b66;z-index:20;margin:0}.dialog[open]{display:flex;justify-content:flex-end}.drawer{width:min(690px,100%);height:100%;background:#fff;display:flex;flex-direction:column;box-shadow:-12px 0 45px #122b4930}.drawer-head{padding:21px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.drawer-head h2{font-size:21px;margin-bottom:6px;line-height:1.4}.drawer-head p{margin:0;font-size:12px;color:var(--muted)}.drawer-body{flex:1;overflow:auto;padding:20px 24px}.drawer-foot{padding:14px 24px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#fff}.drawer-foot .primary{margin-left:auto}.field{display:grid;gap:7px;font-size:12px;font-weight:600;margin-bottom:15px}.field input,.field textarea,.field select{width:100%;font-weight:400}.field small{font-weight:400}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.full{grid-column:1/-1}details.advanced{border:1px solid var(--line);padding:12px;border-radius:8px;margin:12px 0}details.advanced>summary{cursor:pointer;color:#365c91;font-weight:600;font-size:13px}details.advanced[open]>summary{margin-bottom:15px}.steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.milestone{display:flex;align-items:center;gap:9px;padding:10px;background:#f5f8fc;border-radius:7px;margin-bottom:8px;font-size:13px}.milestone input{flex:0 0 auto}.task-brief{border:1px solid var(--line);border-radius:8px;padding:13px;margin-bottom:16px}.task-brief p{white-space:pre-wrap;line-height:1.7;margin:7px 0 0;font-size:13px}.activity{border-left:2px solid #d4e2f4;padding:0 0 13px 12px;margin-left:5px;font-size:12px;line-height:1.6}.activity time{color:var(--muted);font-size:11px}.activity p{margin:3px 0}.error-text{color:var(--red);font-size:12px;line-height:1.6;white-space:pre-wrap}.toast{position:fixed;bottom:23px;right:25px;background:#183553;color:#fff;z-index:40;padding:13px 17px;border-radius:9px;display:flex;gap:20px;align-items:center;box-shadow:0 5px 25px #132d4933;max-width:calc(100% - 28px);font-size:13px}.toast button{background:transparent;color:#fff;border-color:#809dbd;padding:3px 10px}.hidden{display:none!important}.diff{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}.diff th,.diff td{text-align:left;border:1px solid var(--line);padding:8px;word-break:break-word}.link-line{display:flex;gap:9px;flex-wrap:wrap;font-size:12px}.progress-note{font-size:12px;color:var(--muted);margin:7px 0}.retry-banner{margin-bottom:15px;padding:12px;border-radius:9px;background:#fff1f2;color:var(--red);display:flex;justify-content:space-between;gap:12px;align-items:center}.mini-title{margin:17px 0 9px}.feedback{min-height:18px}.pagehead .toolbar{justify-content:flex-end}.meeting-active .person-role{display:none}
@@ -124,18 +124,37 @@ body{font-size:13px}.sidebar{width:184px;padding:20px 12px}.brand{margin:0 6px 2
  .view-switch,.meeting-section button{display:none!important}
  .meeting-section .table-scroll{max-height:none;overflow:visible}
 }
+.masthead{min-height:63px;padding:9px 24px;display:flex;align-items:center;gap:18px;color:white;background-color:#053377;background-image:linear-gradient(100deg,#062852 25%,#0755ac 72%,#08336d),repeating-linear-gradient(90deg,#ffffff22 0 1px,transparent 1px 32px)}
+.masthead .brand{display:flex;align-items:center;gap:14px;margin:0;flex:1}.masthead .brand strong{font-size:clamp(19px,2.7vw,31px)}.masthead .brand small{margin:0;color:#e1efff}.masthead .identity{margin:0;padding:0;border:0;display:flex;align-items:center;gap:8px}.masthead .identity small{color:#e1efff}.masthead .identity button{color:#fff;background:#174886;border-color:#7394bd}.masthead #boardDate{color:#e9f3ff;white-space:nowrap}
+.dashboard-nav{display:flex;gap:8px;padding:8px 22px;background:#f9fcff;border-bottom:1px solid #b9d3f1;overflow-x:auto}.dashboard-nav .nav{color:#153863;white-space:nowrap;padding:8px 16px;text-align:center}.dashboard-nav .nav.active{background:#075ade;color:white}.dashboard-nav .nav:hover:not(.active){background:#e5f0fc}
+#appRoot:not([hidden]){height:100dvh;display:flex;flex-direction:column}.main{margin:0;height:auto;flex:1;min-height:0}.content{height:auto;flex:1}.topbar{min-height:44px;padding:5px 22px}.topbar #crumb{font-size:16px}
+.dashboard-overview{--panel-line:#d6e4f3}.dashboard-three{display:grid;gap:12px;margin-bottom:12px;align-items:stretch}.dashboard-main-row{grid-template-columns:1.15fr 1fr .92fr}.dashboard-lower-row{grid-template-columns:1fr .95fr 1.05fr}
+.dashboard-panel{min-width:0;background:#fff;border-color:var(--panel-line,#d6e4f3);box-shadow:0 2px 6px #122b490a;padding:10px 12px}.dashboard-panel h2{font-size:clamp(14px,1.28vw,19px);color:#133760}.dashboard-panel .board-heading{min-height:25px;border-bottom:1px solid #e2ebf6;padding-bottom:6px}
+.dashboard-metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:12px}.dashboard-metrics button{text-align:left;display:grid;gap:4px;min-width:0;padding:9px 13px;border-color:#d6e4f3;background:#fff;box-shadow:0 2px 6px #122b490a}.dashboard-metrics button:hover{background:#edf5ff}.dashboard-metrics span{color:#23466e;font-weight:650}.dashboard-metrics strong{color:#0753bc;font-size:24px;font-variant-numeric:tabular-nums}.dashboard-metrics .dashboard-alert strong{color:var(--red)}.dashboard-metrics small{font-size:12px}
+.dashboard-notice-column{min-width:0;display:grid;gap:10px;grid-template-rows:1fr 1fr}.dashboard-notes{list-style:none;padding:0;margin:0}.dashboard-notes li{padding:5px 0 6px 12px;border-bottom:1px solid #e6eef7;position:relative}.dashboard-notes li:last-child{border:0}.dashboard-notes li::before{content:'•';position:absolute;left:0;color:#075ade}.dashboard-notes p{margin:3px 0;color:#425b79;overflow-wrap:anywhere;white-space:pre-wrap}.dashboard-overview .dashboard-notes p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dashboard-table{overflow-x:auto}.dashboard-table table{border-collapse:collapse;width:100%;font-size:12px}.dashboard-table th{text-align:left;background:#eef4fb;color:#29486a}.dashboard-table th,.dashboard-table td{padding:7px 5px;border-bottom:1px solid #e5edf6}.dashboard-table td:not(:first-child){white-space:nowrap}.dashboard-table th{white-space:nowrap}.dashboard-task{color:#133760;font-weight:600;text-align:left;overflow-wrap:anywhere}.dashboard-task:hover{text-decoration:underline}.board-code{display:block;padding-left:3px}.dashboard-progress{display:flex;align-items:center;gap:4px}.dashboard-progress progress{width:clamp(30px,4vw,72px);height:8px;accent-color:#0c64db}
+.quad-layout{display:grid;grid-template-columns:auto 1fr;gap:5px 6px;align-items:center}.quad-layout>span{writing-mode:vertical-rl;justify-self:center;color:#34577f}.quad-layout>small{grid-column:2;text-align:center}.dash-quadrants{display:grid;grid-template-columns:1fr 1fr;gap:6px;min-width:0}.dash-quad{border-radius:7px;padding:7px;min-width:0;min-height:74px;background:#eef3f9}.dash-quad.Q1{background:#fff0ef}.dash-quad.Q2{background:#e7f0ff}.dash-quad.Q3{background:#e8f7ef}.dash-quad h3{margin:0 0 3px;font-size:12px}.dash-quad h3 button{text-align:left;color:#214775;font-weight:750}.dash-quad.Q1 h3 button{color:#a62d3e}.dash-quad .dashboard-task{display:block;max-width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:11px}
+.dashboard-timeline{padding:0;margin:0;list-style:none;max-height:260px;overflow:auto}.dashboard-timeline li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;border-left:2px solid #a9c7ef;margin-left:4px;padding:6px 0 6px 10px;gap:6px;position:relative}.dashboard-timeline li::before{content:'';position:absolute;left:-5px;width:8px;height:8px;border-radius:50%;background:#0961d2}.dashboard-timeline time{font-weight:700;color:#31547b}.dashboard-defs dt{font-weight:700;color:#153863}.dashboard-defs dd{margin:4px 0 13px}
+@media(max-width:1100px){.dashboard-main-row,.dashboard-lower-row{grid-template-columns:1fr 1fr}.dashboard-notice-column{grid-column:1/-1;grid-template:1fr/1fr 1fr}.dashboard-metrics{gap:7px}.dashboard-metrics button{padding:8px}}
+@media(max-width:720px){#appRoot:not([hidden]){height:auto;min-height:100dvh}.masthead{padding:10px 12px;flex-wrap:wrap;gap:5px 12px}.masthead .brand{flex-basis:100%}.masthead .brand small{display:none}.dashboard-nav,.topbar{padding:5px 12px}.dashboard-three,.dashboard-notice-column{grid-template-columns:1fr;grid-template-rows:auto}.dashboard-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.dashboard-metrics strong{font-size:19px}}
+@media print{.masthead,.dashboard-nav{display:none!important}}
+
+
 </style>
 </head>
 <body>
 <section id="authRoot" class="auth-root"></section>
 <div id="appRoot" hidden>
-<aside class="sidebar">
- <div class="brand"><strong>环控团队工作看板</strong><small>V1.9</small></div>
- <button class="nav" data-view="overview">团队工作总览</button>
- <button class="nav" data-view="tasks">四象限与重点交办</button>
+<header class="masthead"><div class="brand"><strong>环控团队工作看板</strong><small>HVAC · 环境控制</small></div><span id="boardDate"></span><div class="identity"><strong id="signedName"></strong><small id="signedRole"></small><button data-act="logout">退出</button></div></header>
+<nav class="dashboard-nav" aria-label="主导航">
+ <button class="nav" data-view="overview">工作总览</button>
+ <button class="nav" data-view="projects">项目进展</button>
+ <button class="nav" data-view="tasks">四象限</button>
+ <button class="nav" data-view="risks">风险问题</button>
+ <button class="nav" data-view="team">团队任务</button>
  <button class="nav" data-view="meeting">月度例会</button>
- <div class="identity"><strong id="signedName"></strong><small id="signedRole"></small><button data-act="logout">退出登录</button></div>
-</aside>
+ <button class="nav" data-view="dashboardData">数据中心</button>
+</nav>
 <main class="main">
 <header class="topbar"><strong id="crumb"></strong><div class="top-actions">
  <details class="top-menu"><summary id="connectionSummary">同步状态</summary><div class="top-popover">
@@ -163,7 +182,8 @@ const LEGACY_KEYS = ['ec_team_board_pages_demo_v1','ec_team_board_demo_v1'];
 const BOARDS = ['IPD','LTC','ITR','TPD','能力建设'];
 const STATUSES = ['未开始','进行中','阻塞','待验收','已完成'];
 const QUADRANTS = {Q1:'重要且紧急',Q2:'重要不紧急',Q3:'紧急不重要',Q4:'不重要不紧急'};
-const VIEW_NAMES = {overview:'团队工作总览',tasks:'四象限与重点交办',meeting:'月度例会',admin:'管理与备份'};
+let projectBoard='all',riskFilter='all',boardDetails={},boardDetailsAvailable=false,boardDetailsRequest=0;
+const VIEW_NAMES = {overview:'团队工作总览',tasks:'四象限与重点交办',meeting:'月度例会',admin:'管理与备份',projects:'项目进展',risks:'风险问题',team:'团队任务',dashboardData:'数据中心'};
 const TEMPLATES = {
  review:{name:'设计评审',board:'IPD',deliverable:'评审纪要及问题关闭清单',milestones:'准备评审资料\n组织评审\n关闭评审问题'},
  test:{name:'试验验证',board:'TPD',deliverable:'试验报告、数据记录及验证结论',milestones:'确认试验方案\n完成试验\n审核验证结论'},
@@ -180,7 +200,7 @@ const monthOK = value => typeof value==='string' && /^20\d{2}-(0[1-9]|1[0-2])$/.
 let meetingMonth= today().slice(0,7);
 let overviewFilter='team',taskView='quadrants',meetingView='agenda',printingMeeting=false;
 function shiftDate(offset, from = today()) { const d = new Date(`${from}T12:00:00`); d.setDate(d.getDate()+offset); return localDate(d); }
-function weekRange() { const d = new Date(); d.setDate(d.getDate()-(d.getDay()+6)%7); const begin = localDate(d); return [begin,shiftDate(6,begin)]; }
+function weekRange() { const d = new Date(today()+'T12:00:00'); d.setDate(d.getDate()-(d.getDay()+6)%7); const begin = localDate(d); return [begin,shiftDate(6,begin)]; }
 const dateOK = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(new Date(`${value}T12:00:00`).getTime()) && localDate(new Date(`${value}T12:00:00`)) === value;
 const formatNumber = value => Number(value || 0).toLocaleString('zh-CN',{maximumFractionDigits:1});
 const timestamp = () => new Date().toISOString();
@@ -370,7 +390,7 @@ function openMember(id) {
   ${items.map(t=>memberTaskHTML(t,id)).join('')||'<p class="muted-block">暂无任务</p>'}</section>`);
  showDialog('member',person(id).name+'的工作任务',sections.join(''),'<button data-act="close">关闭</button>');
 }
-function overviewHTML(){
+function teamHTML(){
  const groups=overviewGroups();
  const cards=data.people.map(p=>{
   const active=memberTasks(p.id).filter(t=>isActive(t)&&!t.archived);
@@ -383,8 +403,148 @@ function overviewHTML(){
   ? `<section><div class="board-heading"><h2>团队成员</h2></div><div class="member-grid">${cards.join('')}</div></section>`
   : `<section><div class="board-heading"><h2>${overviewLabels[overviewFilter]}任务</h2><button class="small" data-overview-filter="team">返回团队成员</button></div><div class="overview-results">
     ${groups[overviewFilter].slice().sort(taskOrder).map(t=>`<button class="overview-result" data-task="${escapeHTML(t.id)}"><strong>${escapeHTML(t.name)}</strong><small>${escapeHTML(person(t.owner).name)}</small>${statusHTML(t)}${dueHTML(t)}</button>`).join('')||'<p class="empty">暂无匹配任务</p>'}</div></section>`;
- return `<div class="overview-scroll">${noticesHTML()}<section class="overview-summary" aria-label="任务概况">${kpisHTML(groups)}</section>${board}</div>`;
+ return `<div class="overview-scroll"><section class="overview-summary" aria-label="任务概况">${kpisHTML(groups)}</section>${board}</div>`;
 }
+function panel(title,body,action=''){
+ return `<section class="panel dashboard-panel"><div class="board-heading"><h2>${title}</h2>${action}</div>${body}</section>`;
+}
+function noRows(message){return `<p class="empty">${message}</p>`;}
+function activeTasks(){return data.tasks.filter(t=>isActive(t)&&!t.archived);}
+function keyProjects(){return data.tasks.filter(t=>t.key&&!t.archived).sort(taskOrder);}
+function projectButtons(){return viewSwitch([['all','全部'],...BOARDS.map(b=>[b,b])],projectBoard,'project-board','业务板块');}
+function projectTable(projects){
+ if(!projects.length)return noRows('暂无重点项目');
+ return `<div class="dashboard-table"><table><thead><tr><th>项目名称</th><th>当前阶段</th><th>节点进度</th><th>计划交付</th></tr></thead><tbody>${projects.map(t=>{
+  const total=t.milestones.length,done=t.milestones.filter(m=>m.done).length;
+  const stage=boardDetails[t.id]?.stage;
+  return `<tr><td><button class="plain dashboard-task" data-task="${escapeHTML(t.id)}">${escapeHTML(t.name)}</button><small class="board-code">${escapeHTML(t.board)}</small></td>
+  <td>${stage?escapeHTML(stage):statusHTML(t)}</td><td>${total?`<span class="dashboard-progress"><progress max="${total}" value="${done}" aria-label="节点进度"></progress><small>${done}/${total}</small></span>`:'<small>未设节点</small>'}</td><td>${dueHTML(t)}</td></tr>`;
+ }).join('')}</tbody></table></div>`;
+}
+function projectPage(){
+ return `<div class="overview-scroll">${panel('项目进展',projectButtons()+projectTable(keyProjects().filter(t=>projectBoard==='all'||t.board===projectBoard)))}</div>`;
+}
+function summaryMetrics(){
+ const active=activeTasks(),[start,end]=weekRange(),month=today().slice(0,7);
+ const allMilestones=keyProjects().flatMap(t=>t.milestones);
+ const issues=data.tasks.filter(t=>t.board==='ITR');
+ const monthlyReviews=keyProjects().filter(t=>boardDetails[t.id]?.reviewDate?.startsWith(month));
+ const rows=[
+  ['本周重点任务',active.filter(t=>t.key&&t.due>=start&&t.due<=end).length,'项','data-risk-filter="week"'],
+  ['项目推进率',allMilestones.length?Math.round(100*allMilestones.filter(m=>m.done).length/allMilestones.length):'—',allMilestones.length?'%':'','data-view="projects"'],
+  ['问题闭环率',issues.length?Math.round(100*issues.filter(t=>!isActive(t)).length/issues.length):'—',issues.length?'%':'','data-risk-filter="itr"'],
+  ['逾期事项',active.filter(overdue).length,'项','data-risk-filter="overdue"'],
+  ['本月评审',boardDetailsAvailable?monthlyReviews.length:'—',boardDetailsAvailable?'场':'','data-risk-filter="reviews"'],
+  ['团队在办',active.length,'项','data-dashboard-team="active"']
+ ];
+ return `<div class="dashboard-metrics">${rows.map(([label,value,unit,action],i)=>`<button class="panel ${i===3&&value?'dashboard-alert':''}" ${action}><span>${label}</span><strong>${value}<small> ${unit}</small></strong></button>`).join('')}</div>`;
+}
+function dashboardQuad(){
+ const active=activeTasks().sort(taskOrder);
+ const cells=['Q2','Q1','Q4','Q3'].map(q=>{
+  const items=active.filter(t=>quadrant(t)===q);
+  return `<section class="dash-quad ${q}"><h3><button class="plain" data-risk-filter="${q}">${QUADRANTS[q]} <small>${items.length} 项</small></button></h3>
+  ${items.slice(0,3).map(t=>`<button class="plain dashboard-task" data-task="${escapeHTML(t.id)}" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</button>`).join('')||'<small>暂无任务</small>'}</section>`;
+ });
+ return `<div class="quad-layout"><span>重要程度 ↑</span><div class="dash-quadrants">${cells.join('')}</div><small>紧急程度 →</small></div>`;
+}
+function boardNotes(lead){
+ return data.notices.filter(n=>!n.archived&&(!n.expiry||n.expiry>=today())&&/^领导要求[：:]/.test(n.title)===lead)
+  .sort((a,b)=>Number(b.pinned)-Number(a.pinned)||String(b.createdAt).localeCompare(String(a.createdAt)));
+}
+function notesList(lead,limit=3){
+ const notes=boardNotes(lead).slice(0,limit);
+ return notes.length?`<ul class="dashboard-notes">${notes.map(n=>`<li><strong>${escapeHTML(n.title.replace(/^领导要求[：:]\s*/,'')||'领导要求')}</strong><p>${escapeHTML(n.content)}</p></li>`).join('')}</ul>`:noRows(lead?'暂无领导要求':'暂无团队公告');
+}
+function showBoardNotes(kind){
+ const lead=kind==='lead';
+ const manage=isManager()?`<div class="actions"><button data-notice-type="${kind}" data-act="notice">${lead?'发布领导要求':'发布公告'}</button></div>`:'';
+ const actions=isManager()?`<ul class="dashboard-notes">${boardNotes(lead).map(n=>`<li><strong>${escapeHTML(n.title.replace(/^领导要求[：:]\s*/,''))}</strong><p>${escapeHTML(n.content)}</p><button class="small" data-notice="${escapeHTML(n.id)}">编辑</button> <button class="small" data-archive="${escapeHTML(n.id)}">归档</button></li>`).join('')}</ul>`:'';
+ showDialog('board-notes',lead?'领导要求':'团队公告',manage+(actions&&boardNotes(lead).length?actions:notesList(lead,Infinity)),'<button data-act="close">关闭</button>');
+}
+function more(label,attribute,value){return `<button class="small plain" data-${attribute}="${value}">${label} ›</button>`;}
+function workload(){
+ const members=data.people.map(person=>({person,tasks:activeTasks().filter(t=>t.owner===person.id).sort(taskOrder)}))
+  .filter(row=>row.tasks.length).sort((a,b)=>b.tasks.length-a.tasks.length||taskOrder(a.tasks[0],b.tasks[0]));
+ return members.length?`<div class="dashboard-table"><table><thead><tr><th>成员</th><th>当前主要任务</th><th>在办</th><th>截止</th></tr></thead>
+  <tbody>${members.slice(0,5).map(({person,tasks:[first,...others]})=>`<tr><td><button class="plain" data-member-open="${escapeHTML(person.id)}">${escapeHTML(person.name)}</button></td><td><button class="plain dashboard-task" data-task="${escapeHTML(first.id)}">${escapeHTML(first.name)}</button></td><td>${others.length+1}</td><td>${dueHTML(first)}</td></tr>`).join('')}</tbody></table></div>`:noRows('暂无在办任务');
+}
+function weeklyTimeline(){
+ const [start,end]=weekRange();
+ const items=activeTasks().flatMap(t=>{
+  const scheduled=t.milestones.flatMap(m=>{
+   const due=boardDetails[t.id]?.dates?.[m.name];
+   return due>=start&&due<=end?[{t,due,title:m.name,done:m.done}]:[];
+  });
+  if(t.due>=start&&t.due<=end)scheduled.push({t,due:t.due,title:'计划交付 · '+t.name,done:false});
+  return scheduled;
+ }).sort((a,b)=>a.due.localeCompare(b.due));
+ return items.length?`<ol class="dashboard-timeline">${items.map(x=>`<li><time datetime="${x.due}">${shortDate(x.due)}</time><button class="plain dashboard-task" data-task="${escapeHTML(x.t.id)}">${escapeHTML(x.title)}</button>${x.done?'<small>已完成</small>':x.due===today()?'<small>今日</small>':''}</li>`).join('')}</ol>`:noRows('本周暂无计划节点');
+}
+const riskLabels={all:'风险与待协调事项',week:'本周重点任务',overdue:'逾期事项',itr:'ITR 问题闭环',reviews:'本月评审'};
+function riskItems(key){
+ const active=activeTasks();
+ if(key==='all')return active.filter(t=>overdue(t)||t.status==='阻塞').sort(taskOrder);
+ if(key==='overdue')return active.filter(overdue).sort(taskOrder);
+ if(key==='itr')return data.tasks.filter(t=>t.board==='ITR').sort(taskOrder);
+ if(key==='reviews')return keyProjects().filter(t=>boardDetails[t.id]?.reviewDate?.startsWith(today().slice(0,7)));
+ if(key==='week'){const [a,b]=weekRange();return active.filter(t=>t.key&&t.due>=a&&t.due<=b).sort(taskOrder);}
+ return active.filter(t=>quadrant(t)===key).sort(taskOrder);
+}
+function riskList(items,limit=Infinity){
+ return items.length?`<div class="dashboard-table"><table><thead><tr><th>事项</th><th>流程</th><th>状态</th><th>主责</th></tr></thead><tbody>
+  ${items.slice(0,limit).map(t=>`<tr><td><button class="plain dashboard-task" data-task="${escapeHTML(t.id)}">${escapeHTML(t.name)}</button></td><td>${escapeHTML(t.board)}</td><td>${overdue(t)?'<span class="pill red">逾期</span>':statusHTML(t)}</td><td>${escapeHTML(person(t.owner).name)}</td></tr>`).join('')}</tbody></table></div>`:noRows('暂无匹配事项');
+}
+function riskPage(){
+ return `<div class="overview-scroll">${panel(riskLabels[riskFilter]||QUADRANTS[riskFilter],riskList(riskItems(riskFilter)),riskFilter==='all'?'':more('全部风险','risk-filter','all'))}</div>`;
+}
+function dataPage(){
+ return `<div class="overview-scroll">${panel('统计口径','<dl class="dashboard-defs"><dt>项目推进率</dt><dd>未归档重点任务的已完成里程碑数 ÷ 已设置里程碑总数。</dd><dt>问题闭环率</dt><dd>已完成 ITR 任务数 ÷ 全部 ITR 任务数，包含已归档记录。</dd><dt>本月评审</dt><dd>已录入本月评审日期的重点任务数。</dd><dt>团队工作负荷</dt><dd>按主责统计在办任务数量，不以任务数推算工时或负载百分比。</dd></dl>', '<button class="small" data-act="export-csv">导出任务台账</button>')}${archiveHTML()}</div>`;
+}
+function overviewHTML(){
+ const notes=`<div class="dashboard-notice-column">
+ ${panel('团队公告',notesList(false),more('更多','dashboard-notes','team'))}
+ ${panel('领导要求',notesList(true),more('更多','dashboard-notes','lead'))}</div>`;
+ return `<div class="overview-scroll dashboard-overview">${summaryMetrics()}<div class="dashboard-three dashboard-main-row">
+ ${panel('团队工作四象限',dashboardQuad(),more(activeTasks().length+' 项','view','tasks'))}
+ ${panel('项目进展',projectTable(keyProjects().slice(0,5)),more('查看全部','view','projects'))}${notes}
+ </div><div class="dashboard-three dashboard-lower-row">${panel('团队工作负荷',workload(),more('查看团队','dashboard-team','team'))}
+ ${panel('本周里程碑',weeklyTimeline())}
+ ${panel('风险与待协调事项',riskList(riskItems('all'),5),more('更多','risk-filter','all'))}</div></div>`;
+}
+
+async function readBoardDetails(){
+ const request=++boardDetailsRequest;
+ try{
+  const details=await rpc('ec_board_dashboard_details');
+  if(request!==boardDetailsRequest||profile?.status!=='active')return;
+  const changed=!boardDetailsAvailable||JSON.stringify(boardDetails)!==JSON.stringify(details);
+  boardDetails=details;boardDetailsAvailable=true;
+  if(changed&&!ui.dialog&&!ui.pageDirty)render();
+ }catch{ /* Task data remains available when supplemental scheduling data is unavailable. */ }
+}
+function editProject(id){
+ const task=data.tasks.find(t=>t.id===id);
+ if(!isManager()||!task?.key||!boardDetailsAvailable)return;
+ const meta=boardDetails[id]||{};
+ ui.projectID=id;ui.projectVersion=meta.version||0;
+ const milestones=[...new Set(task.milestones.map(m=>m.name))];
+ const dates=milestones.map(name=>`<label class="field">${escapeHTML(name)}<input type="date" data-project-milestone="${escapeHTML(name)}" value="${escapeHTML(meta.dates?.[name]||'')}"></label>`).join('');
+ showDialog('project','项目排期',`<form id="editForm"><label class="field">当前阶段<input name="stage" maxlength="60" value="${escapeHTML(meta.stage||'')}"></label><label class="field">评审日期<input type="date" name="reviewDate" value="${escapeHTML(meta.reviewDate||'')}"></label>${dates?'<h3>里程碑日期</h3>'+dates:''}</form>`,'<button data-act="close">关闭</button><button class="primary" data-act="project-save">保存排期</button>',task.name);
+}
+async function saveProject(){
+ if(!isManager()||ui.dialog!=='project'||ui.writing||!formValid())return;
+ const id=ui.projectID;
+ const dates=Object.fromEntries([...document.querySelectorAll('[data-project-milestone]')].filter(input=>input.value).map(input=>[input.dataset.projectMilestone,input.value]));
+ ui.writing=true;
+ try{
+  const meta=await rpc('ec_board_save_dashboard_details',{p_task_id:id,p_version:ui.projectVersion,p_stage:String(formValue('stage')||'').trim(),p_review_date:formValue('reviewDate')||null,p_dates:dates});
+  boardDetailsRequest++;boardDetails[id]=meta;closeDialog(true);render();showToast('项目排期已保存');
+ }catch(error){formError(error.code==='PT409'?'排期已被更新。请复制当前修改，再刷新后重试。':error.message);}
+ finally{ui.writing=false;}
+}
+
+
 function quadrantHTML() {
  const tasks=filteredTasks().filter(t=>isActive(t)&&!t.archived);
  return `<div class="quadrants">${Object.entries(QUADRANTS).map(([id,name])=>{const group=tasks.filter(t=>quadrant(t)===id);return `<section class="quadrant ${id}"><header class="quad-head"><h2>${id} · ${name}</h2><small>${group.length} 项</small></header>${group.map(t=>`<button class="quad-card" data-task="${escapeHTML(t.id)}"><strong>${escapeHTML(t.name)}</strong><span class="meta"><span>${escapeHTML(person(t.owner).name)} · ${dueHTML(t)}</span>${statusHTML(t)}</span></button>`).join('') || '<div class="empty">暂无在办任务</div>'}</section>`;}).join('')}</div>`;
@@ -468,7 +628,7 @@ function render() {
  const existingIDs=new Set(data.tasks.map(t=>t.id));
  ui.selected=new Set([...ui.selected].filter(id=>existingIDs.has(id)));
  const scroll=window.scrollY;
- const scrollClass='.overview-scroll,.combined-scroll,.meeting-scroll';
+ const scrollClass='.overview-scroll,.combined-scroll,.meeting-scroll,.admin-scroll';
  const innerScroll=$('#page').querySelector(scrollClass)?.scrollTop||0;
  const searchActive=document.activeElement?.id==='search';
  const caret=searchActive?$('#search').selectionStart:null;
@@ -479,7 +639,8 @@ function render() {
  document.querySelectorAll('[data-view]').forEach(button=>{button.classList.toggle('active',button.dataset.view===prefs.view);button.setAttribute('aria-current',button.dataset.view===prefs.view?'page':'false');});
  $('#crumb').textContent=VIEW_NAMES[prefs.view];
  $('#crumb').title='已注册用户访问 · 云端共享';
- const pages={overview:overviewHTML,tasks:assignmentHTML,meeting:meetingHTML,admin:adminHTML};
+ $('#boardDate').textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'long',day:'numeric',weekday:'short'}).format(new Date());
+ const pages={overview:overviewHTML,tasks:assignmentHTML,meeting:meetingHTML,admin:adminHTML,projects:projectPage,risks:riskPage,team:teamHTML,dashboardData:dataPage};
 $('#page').innerHTML=pages[prefs.view]();
  const scrollBody=$(scrollClass);
  if(scrollBody)scrollBody.scrollTop=innerScroll;
@@ -554,7 +715,7 @@ function openTask(id){
   <div class="link-line">${linkHTML(t.docLink,'任务依据')}${linkHTML(t.resultLink,'交付成果')}${linkHTML(ui.feishu?.tasks?.[t.id]?.record_url,'查看飞书记录')}</div></details>`;
  const activity=`<details class="advanced task-extra" id="taskHistory"><summary>操作记录 ${t.history.length} 条</summary>
   ${[...t.history].reverse().slice(0,20).map(h=>`<div class="activity"><time>${escapeHTML(displayedDate(h.date))} · ${escapeHTML(h.author||'')}</time><p>${escapeHTML(h.text)}</p></div>`).join('')}</details>`;
- const body=`<div class="task-summary"><div class="task-dates"><span>主责 <b>${escapeHTML(person(t.owner).name)}</b></span><span>计划交付 <b>${escapeHTML(t.due)}</b></span>${statusHTML(t)}</div>
+ const body=`<div class="task-summary"><div class="task-dates"><span>主责 <b>${escapeHTML(person(t.owner).name)}</b></span><span>计划交付 <b>${escapeHTML(t.due)}</b></span>${statusHTML(t)}${boardDetails[t.id]?.stage?`<span>项目阶段 <b>${escapeHTML(boardDetails[t.id].stage)}</b></span>`:''}</div>
   <div class="latest-progress"><b>最新进展</b>
    ${latest?`<p>${escapeHTML(latest.text)}</p><small>${escapeHTML([latest.author,displayedDate(latest.date)].filter(Boolean).join(' · '))}</small>`:`<p class="muted-block">${t.updatedAt?'更新于 '+escapeHTML(displayedDate(t.updatedAt)):'暂无进展记录'}</p>`}
   </div></div>
@@ -568,7 +729,8 @@ function openTask(id){
    <details class="advanced task-extra" id="taskResult"><summary>成果链接或编号${t.resultLink?' · 已填写':''}</summary><label class="field">成果链接或编号<input name="resultLink" value="${escapeHTML(t.resultLink)}" ${disabled}></label></details>
    ${manager}
   </form>${metadata}${activity}`;
- let foot=taskActions(t);if(t.status==='已完成'&&canEdit(t))foot+=`<button data-archive-task="${escapeHTML(t.id)}">${t.archived?'移出归档':'归档并收起'}</button>`;
+ let foot=taskActions(t);
+ if(isManager()&&t.key&&boardDetailsAvailable)foot+=`<button class="small" data-project-edit="${escapeHTML(t.id)}">项目排期</button>`;if(t.status==='已完成'&&canEdit(t))foot+=`<button data-archive-task="${escapeHTML(t.id)}">${t.archived?'移出归档':'归档并收起'}</button>`;
  if(isManager())foot+=`<button class="small" data-copy="${escapeHTML(t.id)}">复制</button>`;
  showDialog('task',t.name,body,foot,t.id);
 }
@@ -629,17 +791,19 @@ async function saveMilestones() {
    $('.task-milestones progress').value=done;$('.task-milestones .board-heading small').textContent=done+' / '+total+' 已完成';$('#dialogSubtitle').textContent=`${task.id} · ${person(task.owner).name} · 节点已保存 ${progress(data.tasks.find(t=>t.id===task.id))}%`;}
  }
 }
-function noticeForm(id='') {
+function noticeForm(id='',lead=false) {
  if(!isManager())return;
  const notice=data.notices.find(n=>n.id===id);
  ui.noticeID=id;
- showDialog('notice',id?'编辑公告':'发布公告',`<form id="editForm"><label class="field">公告标题 *<input name="title" required autofocus maxlength="120" value="${escapeHTML(notice?.title || '')}"></label><label class="field">公告正文 *<textarea name="content" required rows="6" maxlength="3000">${escapeHTML(notice?.content || '')}</textarea></label><div class="form-grid"><label class="field">有效期，可留空<input name="expiry" type="date" value="${notice?.expiry || ''}"></label><label class="field">发布人<input name="author" value="${escapeHTML(notice?.author || person(prefs.actor).name)}" maxlength="60"></label></div><label class="field"><span><input type="checkbox" name="pinned" ${notice?.pinned?'checked':''}> 首页置顶</span></label></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-notice">保存公告</button>');
+ const leadership=id?/^领导要求[：:]/.test(notice?.title||''):lead;
+ const noticeTitle=leadership?(notice?.title||'').replace(/^领导要求[：:]\s*/,''):notice?.title||'';
+ showDialog('notice',leadership?'领导要求':id?'编辑公告':'发布公告',`<form id="editForm"><label class="field">公告标题 *<input name="title" required autofocus maxlength="${leadership?115:120}" value="${escapeHTML(noticeTitle)}"></label><label class="field">正文 *<input type="hidden" name="leadership" value="${leadership?'1':'0'}"><textarea name="content" required rows="6" maxlength="3000">${escapeHTML(notice?.content || '')}</textarea></label><div class="form-grid"><label class="field">有效期，可留空<input name="expiry" type="date" value="${notice?.expiry || ''}"></label><label class="field">发布人<input name="author" value="${escapeHTML(notice?.author || person(prefs.actor).name)}" maxlength="60"></label></div><label class="field"><span><input type="checkbox" name="pinned" ${notice?.pinned?'checked':''}> 首页置顶</span></label></form>`,'<button data-act="close">取消</button><button class="primary" data-act="save-notice">保存公告</button>');
 }
 async function saveNotice() {
  if(!isManager()||!formValid())return;
  const fields=new FormData($('#editForm')),title=String(fields.get('title')).trim(),content=String(fields.get('content')).trim();
  if(!title||!content)return formError('标题与正文不能为空');
- const notice={id:ui.noticeID || uid('N'),title,content,author:String(fields.get('author')).trim(),expiry:String(fields.get('expiry')),pinned:fields.get('pinned')==='on',archived:false,createdAt:data.notices.find(n=>n.id===ui.noticeID)?.createdAt || timestamp()};
+ const notice={id:ui.noticeID || uid('N'),title:fields.get('leadership')==='1'?'领导要求：'+title:title,content,author:String(fields.get('author')).trim(),expiry:String(fields.get('expiry')),pinned:fields.get('pinned')==='on',archived:false,createdAt:data.notices.find(n=>n.id===ui.noticeID)?.createdAt || timestamp()};
  if(await commit('公告已保存',draft=>{draft.notices=draft.notices.filter(n=>n.id!==notice.id);draft.notices.unshift(notice);}))closeDialog(true);
 }
 function requestForm() {
@@ -724,7 +888,7 @@ async function handleAction(action,button) {
   case 'logout':if(ui.dirty||ui.pending){showToast('请先保存或关闭当前修改');break;}try{if(authSession)await apiFetch('/auth/v1/logout',{},await accessToken());}catch{}authSession=null;profile=null;sessionStorage.removeItem(SESSION_KEY);data=initialData();envelope.undo=[];envelope.backups=[];showAuth();break;
   case 'refresh-auth':try{await resolveProfile();}catch(error){$('#authMessage').textContent=error.message;}break;
   case 'load-accounts':await loadAccounts();break;
-  case 'refresh':await refreshShared();break;
+  case 'refresh':await Promise.all([refreshShared(),readBoardDetails()]);break;
   case 'feishu-status':await refreshFeishu(true);break;
   case 'feishu-run':await runFeishuSync(false);break;
   case 'feishu-retry':await runFeishuSync(true);break;
@@ -735,11 +899,12 @@ async function handleAction(action,button) {
   case 'discard':closeDialog(true);break;
   case 'save-new':saveNewTask();break;
   case 'save-task':saveTask();break;
-  case 'notice':noticeForm();break;
+  case 'notice':if(ui.dialog==='board-notes')closeDialog(true);noticeForm('',button?.dataset.noticeType==='lead');break;
   case 'meeting-agenda':meetingForm('agenda');break;
   case 'meeting-minutes':meetingForm('minutes');break;
   case 'meeting-assign':taskForm('','','',meetingMonth);break;
   case 'meeting-save':await saveMeetingEntry();break;
+  case 'project-save':await saveProject();break;
   case 'save-notice':saveNotice();break;
   case 'request':requestForm();break;
   case 'save-request':saveRequest();break;
@@ -811,7 +976,7 @@ async function resolveProfile(name=''){
    $('#taskHistory')?.setAttribute('open','');
   }else showToast('任务不存在或当前账号无法访问');
  }
- await refreshFeishu();if(isManager()){await loadAccounts();envelope.backups=await rpc('ec_board_backups');}
+ await Promise.all([refreshFeishu(),readBoardDetails()]);if(isManager()){await loadAccounts();envelope.backups=await rpc('ec_board_backups');}
 }
 async function initAuth(){
  try{const raw=sessionStorage.getItem(SESSION_KEY);if(raw){authSession=JSON.parse(raw);await accessToken();await apiFetch('/auth/v1/user',undefined,authSession.access_token);await resolveProfile();}else showAuth();}catch(error){authSession=null;profile=null;sessionStorage.removeItem(SESSION_KEY);showAuth('请重新登录。'+error.message);}
@@ -864,7 +1029,19 @@ document.addEventListener('click',event=>{
  if(button.dataset.page){prefs.page=Math.max(0,prefs.page+Number(button.dataset.page));render();return;}
 
  const menu=button.closest('.top-menu');if(menu)menu.open=false;
- if(button.dataset.view)return navigate(button.dataset.view);
+ if(button.dataset.view){
+  if(button.dataset.view==='risks')riskFilter='all';
+  if(button.dataset.view==='team')overviewFilter='team';
+  return navigate(button.dataset.view);
+ }
+ if(button.dataset.projectBoard){
+  projectBoard=button.dataset.projectBoard;render();$('[data-project-board="'+projectBoard+'"]')?.focus({preventScroll:true});return;
+ }
+ if(button.dataset.riskFilter){riskFilter=button.dataset.riskFilter;return navigate('risks');}
+ if(button.dataset.dashboardTeam){overviewFilter=button.dataset.dashboardTeam;return navigate('team');}
+ if(button.dataset.projectEdit){if(ui.dirty)return formError('请先保存当前修改');const id=button.dataset.projectEdit;closeDialog(true);return editProject(id);}
+ if(button.dataset.dashboardNotes)return showBoardNotes(button.dataset.dashboardNotes);
+ 
  if(button.dataset.act)return handleAction(button.dataset.act,button);
  if(button.dataset.overviewFilter){
   const key=button.dataset.overviewFilter;overviewFilter=overviewFilter===key?'team':key;
@@ -884,8 +1061,8 @@ document.addEventListener('click',event=>{
  if(button.dataset.tab){prefs.taskTab=button.dataset.tab;prefs.page=0;render();return;}
  if(button.dataset.collapse){const id=button.dataset.collapse;prefs.collapsed=prefs.collapsed.includes(id)?prefs.collapsed.filter(x=>x!==id):[...prefs.collapsed,id];render();return;}
  if(button.dataset.copy){const id=button.dataset.copy;if(ui.dirty)return formError('请先保存当前修改，再复制任务');closeDialog(true);taskForm('',id);return;}
- if(button.dataset.notice)return noticeForm(button.dataset.notice);
- if(button.dataset.archive&&isManager())return commit('公告已归档',draft=>{draft.notices.find(n=>n.id===button.dataset.archive).archived=true;});
+ if(button.dataset.notice){if(ui.dialog==='board-notes')closeDialog(true);return noticeForm(button.dataset.notice);}
+ if(button.dataset.archive&&isManager()){if(ui.dialog==='board-notes')closeDialog(true);return commit('公告已归档',draft=>{draft.notices.find(n=>n.id===button.dataset.archive).archived=true;});}
  if(button.dataset.assign&&isManager())return taskForm('','',button.dataset.assign);
  if(button.dataset.dismiss&&isManager())return commit('需求已标记为不立项',draft=>{draft.requests.find(r=>r.id===button.dataset.dismiss).status='不立项';});
  if(button.dataset.backup&&isManager()){const backup=envelope.backups.find(b=>b.id===button.dataset.backup);if(backup)previewImport(backup.data,'自动备份恢复预览');return;}
@@ -918,7 +1095,7 @@ document.addEventListener('submit',async event=>{
  if(event.target.id==='authForm'){event.preventDefault();await authSubmit(event.target);return;}
  if(event.target.id==='nameForm'){event.preventDefault();try{await resolveProfile(String(new FormData(event.target).get('name')));}catch(error){$('#authMessage').textContent=error.message;}return;}
  if(event.target.id==='claimForm'){event.preventDefault();try{profile=await rpc('ec_board_claim_admin',{p_token:String(new FormData(event.target).get('code')).trim()});await resolveProfile();}catch(error){$('#authMessage').textContent=error.message;}return;}
- if(event.target.id==='editForm'){event.preventDefault();if(ui.dialog==='new')saveNewTask();if(ui.dialog==='task')saveTask();if(ui.dialog==='notice')saveNotice();if(ui.dialog==='meeting-entry')saveMeetingEntry();if(ui.dialog==='request')saveRequest();}});
+ if(event.target.id==='editForm'){event.preventDefault();if(ui.dialog==='project')saveProject();if(ui.dialog==='new')saveNewTask();if(ui.dialog==='task')saveTask();if(ui.dialog==='notice')saveNotice();if(ui.dialog==='meeting-entry')saveMeetingEntry();if(ui.dialog==='request')saveRequest();}});
 $('#dialog').addEventListener('cancel',event=>{event.preventDefault();if(ui.dialog!=='conflict')closeDialog();});
 document.addEventListener('keydown',event=>{
  if(profile?.status!=='active')return;
@@ -929,7 +1106,7 @@ document.addEventListener('keydown',event=>{
  if(event.key.toLowerCase()==='n'&&isManager()){event.preventDefault();taskForm();}
 });
 document.addEventListener('toggle',event=>{if(event.target.id==='archivePanel'){prefs.archiveOpen=event.target.open;remember();}},true);
-setInterval(()=>{if(!document.hidden)refreshShared();},20000);
+setInterval(()=>{if(!document.hidden){refreshShared();if(!ui.dialog&&!ui.pageDirty)readBoardDetails();}},20000);
 window.addEventListener('beforeunload',event=>{if(ui.dirty||ui.pending||ui.pageDirty){event.preventDefault();event.returnValue='';}});
 initAuth();
 if(envelope.savedAt)setSaveState(`云端已保存 · ${new Date(envelope.savedAt).toLocaleTimeString('zh-CN',{hour12:false})}`);
