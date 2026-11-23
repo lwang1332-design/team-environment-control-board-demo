@@ -654,7 +654,16 @@ async function resolveProfile(name=''){
  if(profile.status!=='active'){showAuth();return;}
  prefs.actor=profile.member_id;prefs.role=profile.role==='supervisor'?'supervisor':'member';prefs.view='overview';prefs.page=0;
  const answer=await rpc('ec_board_get_state');envelope={...answer,token:String(answer.revision),data:normalizeData(answer),undo:[],backups:[]};data=envelope.data;
- render();setSaveState('云端已连接');await refreshFeishu();if(isManager()){await loadAccounts();envelope.backups=await rpc('ec_board_backups');}
+ render();setSaveState('云端已连接');
+ const linkedTask=new URLSearchParams(window.location.search).get('task');
+ if(linkedTask){
+  const url=new URL(window.location.href);url.searchParams.delete('task');window.history.replaceState(null,'',url);
+  if(data.tasks.some(task=>task.id===linkedTask)){
+   openTask(linkedTask);
+   [...document.querySelectorAll('#dialog details.advanced')].at(-1)?.setAttribute('open','');
+  }else showToast('任务不存在或当前账号无法访问');
+ }
+ await refreshFeishu();if(isManager()){await loadAccounts();envelope.backups=await rpc('ec_board_backups');}
 }
 async function initAuth(){
  try{const raw=sessionStorage.getItem(SESSION_KEY);if(raw){authSession=JSON.parse(raw);await accessToken();await apiFetch('/auth/v1/user',undefined,authSession.access_token);await resolveProfile();}else showAuth();}catch(error){authSession=null;profile=null;sessionStorage.removeItem(SESSION_KEY);showAuth('请重新登录。'+error.message);}
